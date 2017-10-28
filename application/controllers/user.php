@@ -2,29 +2,12 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class User extends CI_Controller {
-	 public function __construct()
+	public function __construct()
 	{
 		parent::__construct();
 		$this->load->library('authorize');
-		$a = new Authorize();
 		$this->load->helper('auth_helper');
 		$this->load->model('user_model');
-	}
-	public function index()
-	{
-		if(!is_logged_in()){
-			redirect('login');
-		}
-		$this->load->view('i_am');
-	}
-	private function is_login() {
-		if(is_logged_in()){
-			redirect('/');
-			//$level = $this->session->userdata('level');
-			//if($level == 2 || $level == 3){
-				
-			//}
-		}
 	}
 	
 	private function is_num_register() {
@@ -32,8 +15,12 @@ class User extends CI_Controller {
 			redirect('register');
 		} 
 	}
+	
 	public function Profile()
 	{	
+		if(!is_logged_in()) {
+			redirect('login');
+		}
 		if($this->input->method() == 'post'){
 			
 			$config = array(
@@ -80,24 +67,20 @@ class User extends CI_Controller {
 							
                 );
 			
-				
-
 			$this->form_validation->set_rules($config);
 			$this->form_validation->set_error_delimiters('<li>', '</li>');
 			if($this->form_validation->run()==true){
-				//$userdata = $this->user_model->get_userdata($this->input->post('phone_num'));
-				//$userdata['email'] = decrypt($userdata['email']);
-			//	this->auth_model->insert_login_activity($userdata['id']);
-				//$userdata['is_logged_in'] = true;
-				//$this->session->set_userdata($userdata);
+				$this->user_model->update_user();
+				$user = $this->user_model->get_user();
+				$setting=$this->user_model->get_setting();
 				
-				//$profile=$this->input->post();
-				//$this->user_model->UpdateProfile($profile);
+				$authorize = new Authorize();
+				$response = $authorize->CreateCustomerProfile($user,$setting);
 				
-							$user=$this->user_model->get_user();
-							$setting=$this->user_model->get_setting();
-							$a = new Authorize();
-							$a->createCustomerProfile($user,$setting);
+				if($response['status'] == 'success') {
+					$this->user_model->update_profile_id($response['profile_id']);
+				}
+				
 				$response['url'] = '/';
 				
 				$response['status'] = 'success';
@@ -109,46 +92,31 @@ class User extends CI_Controller {
 			$response['token'] = $this->security->get_csrf_hash();
 			echo json_encode($response);
 			exit;
-			//secession flash data
-			//exit;
 		}
 		
-		$data['user']=$this->user_model->get_user();
-		if($data['user']->firstname=='')
-		{
-			$data['profile']=true;
-			
-		}else{
-			$data['profile']=true;
-			//$data['profile']=false;
-		
-			}
-		$data['content'] = 'donation/donationn';
-		
-		$this->load->view('donation/layoutd', $data);
+		$data['user'] = $this->user_model->get_user();
+		$data['content'] = 'donation/donation';
+		$this->load->view('donation/layout', $data);
 	}
+	
 	public function update_profile()
-	{		$a = new Authorize();	
-			//$profile=$this->input->post();
-				//$this->user_model->UpdateProfile($profile);
-				$payment_profiles_count = $this->user_model->get_payment_profiles_count();
-				if($payment_profiles_count > 0){
+	{
+		$a = new Authorize();	
+		
+		$payment_profiles_count = $this->user_model->get_payment_profiles_count();
+		if($payment_profiles_count > 0){
 			$payment_profiles = $this->user_model->get_payment_profiles();
 			foreach($payment_profiles as $profile) {
-			$a->updateCustomerPaymentProfile($user,$profile,$setting);
+				$a->updateCustomerPaymentProfile($user,$profile,$setting);
 			}
-		
-	}
+		}
 	}
 	function my_donation_confirm()
 	{
-	$data['payment_profiles_count']=$this->user_model->get_payment_profiles_count();
-		$data['payment_profiles']=$this->user_model->get_payment_profiles();
-	
+		$data['payment_profiles']=$this->user_model->get_payment_profiles();	
 		$data['setting']=$this->user_model->get_setting();
 		$data['content'] = 'donation/my_donation_confirm';
-		
-		$this->load->view('donation/layoutd', $data);
+		$this->load->view('donation/layout', $data);
 	}
 	function charge_donation()
 	{	$card_details=$this->input->post();
@@ -174,9 +142,12 @@ class User extends CI_Controller {
 		
 		$this->load->view('donation/layoutd', $data);
 	}
+	
 	public function login()
 	{	
-		$this->is_login();
+		if(is_logged_in()) {
+			redirect('/');
+		}
 		if($this->input->method() == 'post'){
 			
 			$config = array(
@@ -196,10 +167,6 @@ class User extends CI_Controller {
 			$this->form_validation->set_error_delimiters('<li>', '</li>');
 			if($this->form_validation->run()==true){
 				$userdata = $this->user_model->get_userdata($this->input->post('phone_num'));
-				
-				
-				//$userdata['email'] = decrypt($userdata['email']);
-			//	this->auth_model->insert_login_activity($userdata['id']);
 				$userdata['is_logged_in'] = true;
 				$this->session->set_userdata($userdata);
 				
@@ -214,20 +181,16 @@ class User extends CI_Controller {
 			$response['token'] = $this->security->get_csrf_hash();
 			echo json_encode($response);
 			exit;
-			//secession flash data
-			//exit;
 		}
-		//$this->load->view('login');
-		//$data['content'] = 'Auth/loginn';
-		//$this->load->view('Auth/layout', $data);
 		$data['content'] = 'user/login';
-		
 		$this->load->view('user/layout', $data);
 		
 	}
 	public function register()
 	{
-		$this->is_login();
+		if(is_logged_in()) {
+			redirect('/');
+		}
 		if($this->input->method() == 'post'){			
 			$config = array(
 							array(
@@ -312,9 +275,7 @@ class User extends CI_Controller {
 		
 	}
 	public function security_pin()
-	{
-		$this->is_login();
-		//$this->is_num_register(); 
+	{ 
 		if($this->input->method() == 'post')
 		{
 			$config = array(
@@ -348,12 +309,12 @@ class User extends CI_Controller {
 		$this->load->view('user/layout', $data);
 		
 	}
-	public function cancel()
-	{
+	
+	public function logout() {
 		$this->session->sess_destroy();
-		$data['content'] = 'user/login';
-		$this->load->view('user/layout', $data);
+		redirect('login');
 	}
+	
 	public function password_check($password, $username)
 	{
 		if ($hash = $this->user_model->get_password($username))

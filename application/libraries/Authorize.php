@@ -12,14 +12,9 @@ class Authorize {
 		// $this->load->model('user_model');
 	}
 	
-	function CreateProfile($user,$setting)
+	
+	function CreateCustomerProfile($user,$setting)
 	{
-		$merchantAuthentication = new AnetAPI\MerchantAuthenticationType();
-		echo '<pre>';
-		print_r($merchantAuthentication);	
-	}
-	function createCustomerProfile($user,$setting)
-{
 	/* Create a merchantAuthenticationType object with authentication details
 	   retrieved from the constants file */
 	$merchantAuthentication = new AnetAPI\MerchantAuthenticationType();
@@ -42,21 +37,21 @@ class Authorize {
 	$request->setProfile($customerProfile);
 	// Create the controller and get the response
 	$controller = new AnetController\CreateCustomerProfileController($request);
-	$response = $controller->executeWithApiResponse(\net\authorize\api\constants\ANetEnvironment::PRODUCTION);
+	$response = $controller->executeWithApiResponse(\net\authorize\api\constants\ANetEnvironment::SANDBOX);
   
 	if (($response != null) && ($response->getMessages()->getResultCode() == "Ok")) {
-	$this->user_model->insert_profile_id( $response->getCustomerProfileId());
-		$this->user_model->email_verification($user->email);
+		$res = ['status' => 'success','profile_id' => $response->getCustomerProfileId()];
 		//echo json_encode(array('status' => 'success', 'profile_id' => $response->getCustomerProfileId()));
 			//echo "Succesfully created customer profile : " . $response->getCustomerProfileId() . "\n";
 		//echo "SUCCESS: PAYMENT PROFILE ID : " . $paymentProfiles[0] . "\n";
 	} else {
 		//echo "ERROR :  Invalid response\n";
 		$errorMessages = $response->getMessages()->getMessage();
+		$res = ['status' => 'error', 'code' => $errorMessages[0]->getCode(), 'message' => $errorMessages[0]->getText()];
 		//echo json_encode(array('status' => 'failed', 'message' => $errorMessages[0]->getText()));
 		//echo "Response : " . $errorMessages[0]->getCode() . "  " .$errorMessages[0]->getText() . "\n";
 	}
-	return $response;
+	return $res;
 }
 function updateCustomerPaymentProfile($user,$profile,$setting) {
 	$customerProfileId=$user['profileid'];
@@ -114,7 +109,7 @@ function updateCustomerPaymentProfile($user,$profile,$setting) {
 	  $request->setPaymentProfile( $paymentprofile );
 
 	  $controller = new AnetController\UpdateCustomerPaymentProfileController($request);
-	  $response = $controller->executeWithApiResponse( \net\authorize\api\constants\ANetEnvironment::PRODUCTION);
+	  $response = $controller->executeWithApiResponse( \net\authorize\api\constants\ANetEnvironment::SANDBOX);
 	  if (($response != null) && ($response->getMessages()->getResultCode() == "Ok") )
 	  {
 		 //echo "Update Customer Payment Profile SUCCESS: " . "\n";
@@ -200,7 +195,7 @@ function updateCustomerPaymentProfile($user,$profile,$setting) {
 
     // Create the controller and get the response
     $controller = new AnetController\CreateCustomerPaymentProfileController($paymentprofilerequest);
-    $response = $controller->executeWithApiResponse(\net\authorize\api\constants\ANetEnvironment::PRODUCTION);
+    $response = $controller->executeWithApiResponse(\net\authorize\api\constants\ANetEnvironment::SANDBOX);
 
     if (($response != null) && ($response->getMessages()->getResultCode() == "Ok") ) {
 		$payment_id = $response->getCustomerPaymentProfileId();
@@ -272,7 +267,7 @@ function chargeCustomerProfile($profileid, $paymentprofileid, $amount, $user, $s
     $request->setRefId( $refId);
     $request->setTransactionRequest( $transactionRequestType);
     $controller = new AnetController\CreateTransactionController($request);
-    $response = $controller->executeWithApiResponse( \net\authorize\api\constants\ANetEnvironment::PRODUCTION);
+    $response = $controller->executeWithApiResponse( \net\authorize\api\constants\ANetEnvironment::SANDBOX);
 
     if ($response != null)
     {

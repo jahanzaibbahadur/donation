@@ -1,4 +1,4 @@
-<form accept-charset="UTF-8" action="" class="clear_inputs" id="donation_form" method="post">
+<form accept-charset="UTF-8" action="" id="donation_form" method="post">
 <div class="row">
 <div class="col-xs-12">
 <div class="new_look_midline_text">
@@ -46,13 +46,13 @@
 <div id="card_details">
 <?php
 //$payment_profiles_count = get_payment_profiles_count();
-if($payment_profiles_count > 0){
+if(count($payment_profiles) > 0){
 	echo "<script>var card_type = 'existing';</script>";
 }else{
 	echo "<script>var card_type = 'new';</script>";
 }
 ?>
-<div id="new_card" style="<?php echo $payment_profiles_count > 0 ? 'display: none;' : ''; ?>">
+<div id="new_card" style="<?php echo count($payment_profiles) > 0 ? 'display: none;' : ''; ?>">
 <div class="row">
 <div class="col-xs-12">
 <div class="new_look_midline_text">
@@ -71,10 +71,10 @@ if($payment_profiles_count > 0){
 <input autocomplete="off" class="new_look_full_width form-control" id="card_number" name="card_number" placeholder="XXXX XXXX XXXX XXXX" required="required" type="tel">
 </div>
 <div class="col-xs-5 padding-left-none padding-right-none">
-<img alt="Visa_color_icon" class="deselected cards" id="visa" src="mobile_assets/visa_color_icon-985bccb19cc954fba005b7374a1ba081.png" title="Visa">
-<img alt="Master_card_color_icon" class="deselected cards" id="mastercard" src="mobile_assets/master_card_color_icon-8e4b8cb184a416c8e7740c133374920e.png" title="Master Card">
-<img alt="American_express_color_icon" class="deselected cards" id="amex" src="mobile_assets/american_express_color_icon-f26f48991a9fa06e010b06a971bad00d.png" title="American Express">
-<img alt="Discover_color_icon" class="deselected cards" id="discover" src="mobile_assets/discover_color_icon-e2c1bc436f2842f18964f0e9f84c7020.png" title="Discover">
+<img alt="Visa_color_icon" class="deselected cards" id="visa" src="assets/visa_color_icon-985bccb19cc954fba005b7374a1ba081.png" title="Visa">
+<img alt="Master_card_color_icon" class="deselected cards" id="mastercard" src="assets/master_card_color_icon-8e4b8cb184a416c8e7740c133374920e.png" title="Master Card">
+<img alt="American_express_color_icon" class="deselected cards" id="amex" src="assets/american_express_color_icon-f26f48991a9fa06e010b06a971bad00d.png" title="American Express">
+<img alt="Discover_color_icon" class="deselected cards" id="discover" src="assets/discover_color_icon-e2c1bc436f2842f18964f0e9f84c7020.png" title="Discover">
 </div>
 </div>
 </div>
@@ -117,7 +117,7 @@ if($payment_profiles_count > 0){
 <div class="row bottom-large">
 </div>
 <script>
-  $(document).ready(function() {
+document.addEventListener('DOMContentLoaded', function() {
     $(document).on('validation:required', function(e) {
       var res = true;
 	  if(card_type == 'existing') return true;
@@ -148,22 +148,20 @@ if($payment_profiles_count > 0){
     $('#expiration_year').on('change', function(e) {
       clearExpDateErrors();
     });
+}, false);
   
-    function clearExpDateErrors() {
-      var expMonth = $('#expiration_month').val();
-      var expYear = $('#expiration_year').val();
-      if (expMonth != '' && expYear != '') {
-        $('#expiration_date_required').css('display', 'none');
-        $('#expiration_date_expired').css('display', 'none');
-      }
-    }
-
-
-  });
+	function clearExpDateErrors() {
+		var expMonth = $('#expiration_month').val();
+		var expYear = $('#expiration_year').val();
+		if (expMonth != '' && expYear != '') {
+			$('#expiration_date_required').css('display', 'none');
+			$('#expiration_date_expired').css('display', 'none');
+		}
+	}
 </script>
 </div>
 <?php
-if($payment_profiles_count > 0) {
+if(count($payment_profiles) > 0) {
 
 	 
 ?>
@@ -202,22 +200,22 @@ function add_new_card() {
 	$('#new_card').show();
 	$('#existing_card').remove();
 }
-$(document).ready(function(){
+document.addEventListener('DOMContentLoaded', function() {
 	show_card_logo();
 	$('select[name=payment_profile]').change(function(){
 		show_card_logo();
 	});
-});
+}, false);
 function show_card_logo(){
 		var ctype = $('select[name=payment_profile] option:selected').data('type');
 		if(ctype == 'VISA') {
-			$('#card_logo').html('<img alt="Visa_color_icon" class="which-cards" id="visa" src="mobile_assets/visa_color_icon-985bccb19cc954fba005b7374a1ba081.png" title="Visa">');
+			$('#card_logo').html('<img alt="Visa_color_icon" class="which-cards" id="visa" src="assets/visa_color_icon-985bccb19cc954fba005b7374a1ba081.png" title="Visa">');
 		}else if(ctype == 'MASTERCARD'){
-			$('#card_logo').html('<img alt="Master_card_color_icon" class="which-cards" id="mastercard" src="mobile_assets/master_card_color_icon-8e4b8cb184a416c8e7740c133374920e.png" title="Master Card">');
+			$('#card_logo').html('<img alt="Master_card_color_icon" class="which-cards" id="mastercard" src="assets/master_card_color_icon-8e4b8cb184a416c8e7740c133374920e.png" title="Master Card">');
 		}else if(ctype == 'AMEX'){
-			$('#card_logo').html('<img alt="American_express_color_icon" class="which-cards" id="amex" src="mobile_assets/american_express_color_icon-f26f48991a9fa06e010b06a971bad00d.png" title="American Express">');
+			$('#card_logo').html('<img alt="American_express_color_icon" class="which-cards" id="amex" src="assets/american_express_color_icon-f26f48991a9fa06e010b06a971bad00d.png" title="American Express">');
 		}else if(ctype == 'DISCOVER'){
-			$('#card_logo').html('<img alt="Discover_color_icon" class="which-cards" id="discover" src="mobile_assets/discover_color_icon-e2c1bc436f2842f18964f0e9f84c7020.png" title="Discover">');
+			$('#card_logo').html('<img alt="Discover_color_icon" class="which-cards" id="discover" src="assets/discover_color_icon-e2c1bc436f2842f18964f0e9f84c7020.png" title="Discover">');
 		}else{
 		}
 }
@@ -251,9 +249,7 @@ function show_card_logo(){
 </form>
 
 <script>
-
-$(document).ready(function() {
-	
+document.addEventListener('DOMContentLoaded', function() {
 	$('#donation_form').submit(function(e){
 		e.preventDefault();		
 		var form = $(this);
@@ -277,10 +273,6 @@ $(document).ready(function() {
 				setTimeout(function(){ location.href = base_url + 'thankuou'; }, 1000);
 			},'json');
 		}
-	});	
-
-	
-});
-
-
+	});		
+}, false);
 </script>

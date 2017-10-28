@@ -1,41 +1,50 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class user_model extends CI_Model{
+	
 	function create_user()
 	{
 		$user_info = array(
           'phone_num' => $this->session->userdata('register_num'),  
-          '	password' => hash_password($this->input->post('password'))
+          'password' => hash_password($this->input->post('password'))
 		);
-	$this->db->set($user_info);
+		$this->db->set($user_info);
         $query = $this->db->insert('users');
 	}
-function get_userdata($phone_num){
+	
+	function get_userdata($phone_num){
         $this->db->where('phone_num',$phone_num);
         $query = $this->db->get('users');
         if($query->num_rows() == 1){
             return $query->row_array();
         }else return false;
     }
-	 function check_phone_num($phone_num){
+	
+	function check_phone_num($phone_num){
         $this->db->where('phone_num',$phone_num);
         $res = $this->db->get('users');
         if($res->num_rows() == 1){
             return true;
         }else return false;
     }
-	function get_setting()
-	{
+	
+	function get_setting() {
 		$query = $this->db->get('settings');
-		$result = $query->row();
-		return $result;
+		return $query->row();
 	}
-	function get_user()
-	{	$this->db->where('id',2);
+	
+	function get_user() {	
+		$this->db->where('id',$this->session->userdata('id'));
 		$query = $this->db->get('users');
-		$result = $query->row();
-		return $result;
+		return $query->row();
 	}
+	
+	function get_payment_profiles() {
+		$this->db->where('user_id', $this->session->userdata('id'));
+		$query = $this->db->get('payment_profiles');
+		return $query->result();
+	}
+	
 	 function get_password($phone_num){
         $this->db->where('phone_num',$phone_num);
 		//$this->db->where('is_deleted','0');
@@ -53,8 +62,10 @@ function get_userdata($phone_num){
 			//}
        // }else return false;
     }
-	function UpdateProfile($profile)
-	{	$data = array(
+	
+	function update_user() {
+		$profile = $this->input->post(null, true);
+		$data = array(
                'firstname' => $profile['first_name'],
 			   'lastname' => $profile['last_name'],
 			   'mobile' => $profile['phone'],
@@ -64,20 +75,10 @@ function get_userdata($phone_num){
 			   'state' => $profile['state'],
 			   'zip' => $profile['zip']
             );
-			$this->db->where('id', 2);
-			$this->db->update('user', $data);
+		$this->db->where('id', $this->session->userdata('id'));
+		$this->db->update('users', $data);
 	}
-	function get_payment_profiles_count()
-	{	
-		$this->db->from('payment_profiles');
-		$this->db->where('user_id', 1);
-		$query = $this->db->get();
-		if($query->num_rows() > 0){
-		$rowcount = $query->num_rows();
-		return $rowcount;}
-	else
-		return 0;
-		}
+	
 	function insert_payment_profile($profile)
 	{
 		$data = array(
@@ -85,10 +86,11 @@ function get_userdata($phone_num){
 			   'payment_id' => $profile['last_name'],
 			   'card_type' => $profile['phone'],
 			   'card_number' => $profile['email'],
-			   'created_at' => now()
+			   'created_at' => 'now()'
             );
-			$this->db->insert('payment_profiles', $data); 
+		$this->db->insert('payment_profiles', $data); 
 	}
+	
 	function inser_recipt($detail)
 	{
 		$data = array(
@@ -141,23 +143,14 @@ curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
   return true;
 }
 //donation
-public function insert_profile_id($profileid){
-	$data = array(
-               'profileid' => $profileid
-			   
-            );
 
-$this->db->where('id', 2);
-$this->db->update('user', $data);
-}
-function get_payment_profiles(){
-	$this->db->from('payment_profiles');
-	$this->db->where('user_id',1);
-		$query = $this->db->get();
-		$result[] = $query->row();
-		//$result = $query->row_array();
-		return $result;
-		}
+	public function update_profile_id($profileid){
+		$data = array(
+				   'profileid' => $profileid 
+				);
+		$this->db->where('id', $this->session->userdata('id'));
+		$this->db->update('users', $data);
+	}
 	
 	function email_verification($email){
 		$setting=$this->get_setting();

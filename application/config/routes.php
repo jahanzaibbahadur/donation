@@ -54,9 +54,8 @@ $route['login'] = 'user/login';
 $route['register'] = 'user/register';
 $route['verification'] = 'user/verification';
 $route['security_pin'] = 'user/security_pin';
-$route['cancel'] = 'user/cancel';
+$route['logout'] = 'user/logout';
 //donation
-$route['Profile'] = 'user/Profile';
 $route['my_donation_confirm'] = 'user/my_donation_confirm';
 $route['thankyou'] = 'user/thankyou';
 $route['404_override'] = '';

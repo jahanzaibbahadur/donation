@@ -571,3 +571,106 @@
  Wed, 25 Oct 2017 16:14:22 +0200 INFO : [_sendRequest] (C:\xampp\htdocs\donation_codeigniter\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\util\HttpClient.php : 96) - Response from AnetApi: ﻿<?xml version="1.0" encoding="utf-8"?><createCustomerProfileResponse xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="AnetApi/xml/v1/schema/AnetApiSchema.xsd"><refId>ref1508940859</refId><messages><resultCode>Error</resultCode><message><code>E00007</code><text>User authentication failed due to invalid authentication values.</text></message></messages></createCustomerProfileResponse>
  Wed, 25 Oct 2017 16:14:22 +0200 INFO : [execute] (C:\xampp\htdocs\donation_codeigniter\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\api\controller\base\ApiOperationBase.php : 128) - Response De-Serialization Begin
  Wed, 25 Oct 2017 16:14:22 +0200 INFO : [execute] (C:\xampp\htdocs\donation_codeigniter\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\api\controller\base\ApiOperationBase.php : 130) - Response De-Serialization End
+ Fri, 27 Oct 2017 22:20:50 +0200 INFO : [execute] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\api\controller\base\ApiOperationBase.php : 114) - Request Serialization Begin
+ Fri, 27 Oct 2017 22:20:50 +0200 DEBUG : [execute] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\api\controller\base\ApiOperationBase.php : 115) - net\authorize\api\contract\v1\CreateCustomerProfileRequest Object
+(
+    [profile:net\authorize\api\contract\v1\CreateCustomerProfileRequest:private] => net\authorize\api\contract\v1\CustomerProfileType Object
+        (
+            [paymentProfiles:net\authorize\api\contract\v1\CustomerProfileType:private] => 
+            [shipToList:net\authorize\api\contract\v1\CustomerProfileType:private] => 
+            [merchantCustomerId:net\authorize\api\contract\v1\CustomerProfileBaseType:private] => M_1509135649
+            [description:net\authorize\api\contract\v1\CustomerProfileBaseType:private] => Donor 3
+            [email:net\authorize\api\contract\v1\CustomerProfileBaseType:private] => 
+        )
+
+    [validationMode:net\authorize\api\contract\v1\CreateCustomerProfileRequest:private] => 
+    [merchantAuthentication:net\authorize\api\contract\v1\ANetApiRequestType:private] => net\authorize\api\contract\v1\MerchantAuthenticationType Object
+        (
+            [name:net\authorize\api\contract\v1\MerchantAuthenticationType:private] => 66BB6xppD8qM
+            [transactionKey:net\authorize\api\contract\v1\MerchantAuthenticationType:private] => xxxx
+            [sessionToken:net\authorize\api\contract\v1\MerchantAuthenticationType:private] => 
+            [password:net\authorize\api\contract\v1\MerchantAuthenticationType:private] => 
+            [impersonationAuthentication:net\authorize\api\contract\v1\MerchantAuthenticationType:private] => 
+            [fingerPrint:net\authorize\api\contract\v1\MerchantAuthenticationType:private] => 
+            [clientKey:net\authorize\api\contract\v1\MerchantAuthenticationType:private] => 
+            [mobileDeviceId:net\authorize\api\contract\v1\MerchantAuthenticationType:private] => 
+        )
+
+    [clientId:net\authorize\api\contract\v1\ANetApiRequestType:private] => sdk-php-1.9.3
+    [refId:net\authorize\api\contract\v1\ANetApiRequestType:private] => ref1509135649
+)
+
+ Fri, 27 Oct 2017 22:20:50 +0200 INFO : [execute] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\api\controller\base\ApiOperationBase.php : 118) - Request  Serialization End
+ Fri, 27 Oct 2017 22:20:50 +0200 INFO : [_sendRequest] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\util\HttpClient.php : 75) -  Url: https://api2.authorize.net/xml/v1/request.api
+ Fri, 27 Oct 2017 22:20:50 +0200 INFO : [_sendRequest] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\util\HttpClient.php : 77) - Request to AnetApi: 
+<?xml version="1.0" encoding="UTF-8"?>
+<createCustomerProfileRequest xmlns="AnetApi/xml/v1/schema/AnetApiSchema.xsd">
+  <merchantAuthentication>
+    <name><![CDATA[66BB6xppD8qM]]></name>
+    <transactionKey>xxxx</transactionKey>
+  </merchantAuthentication>
+  <clientId><![CDATA[sdk-php-1.9.3]]></clientId>
+  <refId><![CDATA[ref1509135649]]></refId>
+  <profile>
+    <merchantCustomerId><![CDATA[M_1509135649]]></merchantCustomerId>
+    <description><![CDATA[Donor 3]]></description>
+    <email><![CDATA[]]></email>
+  </profile>
+</createCustomerProfileRequest>
+
+ Fri, 27 Oct 2017 22:20:50 +0200 INFO : [_sendRequest] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\util\HttpClient.php : 89) - Sending 'XML' Request type
+ Fri, 27 Oct 2017 22:20:50 +0200 INFO : [_sendRequest] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\util\HttpClient.php : 94) - Sending http request via Curl
+ Fri, 27 Oct 2017 22:20:53 +0200 INFO : [_sendRequest] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\util\HttpClient.php : 96) - Response from AnetApi: ﻿<?xml version="1.0" encoding="utf-8"?><createCustomerProfileResponse xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="AnetApi/xml/v1/schema/AnetApiSchema.xsd"><refId>ref1509135649</refId><messages><resultCode>Error</resultCode><message><code>E00007</code><text>User authentication failed due to invalid authentication values.</text></message></messages></createCustomerProfileResponse>
+ Fri, 27 Oct 2017 22:20:53 +0200 INFO : [execute] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\api\controller\base\ApiOperationBase.php : 128) - Response De-Serialization Begin
+ Fri, 27 Oct 2017 22:20:53 +0200 INFO : [execute] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\api\controller\base\ApiOperationBase.php : 130) - Response De-Serialization End
+ Fri, 27 Oct 2017 23:12:59 +0200 INFO : [execute] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\api\controller\base\ApiOperationBase.php : 114) - Request Serialization Begin
+ Fri, 27 Oct 2017 23:12:59 +0200 DEBUG : [execute] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\api\controller\base\ApiOperationBase.php : 115) - net\authorize\api\contract\v1\CreateCustomerProfileRequest Object
+(
+    [profile:net\authorize\api\contract\v1\CreateCustomerProfileRequest:private] => net\authorize\api\contract\v1\CustomerProfileType Object
+        (
+            [paymentProfiles:net\authorize\api\contract\v1\CustomerProfileType:private] => 
+            [shipToList:net\authorize\api\contract\v1\CustomerProfileType:private] => 
+            [merchantCustomerId:net\authorize\api\contract\v1\CustomerProfileBaseType:private] => M_1509138779
+            [description:net\authorize\api\contract\v1\CustomerProfileBaseType:private] => Donor 
+            [email:net\authorize\api\contract\v1\CustomerProfileBaseType:private] => 
+        )
+
+    [validationMode:net\authorize\api\contract\v1\CreateCustomerProfileRequest:private] => 
+    [merchantAuthentication:net\authorize\api\contract\v1\ANetApiRequestType:private] => net\authorize\api\contract\v1\MerchantAuthenticationType Object
+        (
+            [name:net\authorize\api\contract\v1\MerchantAuthenticationType:private] => 66BB6xppD8qM
+            [transactionKey:net\authorize\api\contract\v1\MerchantAuthenticationType:private] => xxxx
+            [sessionToken:net\authorize\api\contract\v1\MerchantAuthenticationType:private] => 
+            [password:net\authorize\api\contract\v1\MerchantAuthenticationType:private] => 
+            [impersonationAuthentication:net\authorize\api\contract\v1\MerchantAuthenticationType:private] => 
+            [fingerPrint:net\authorize\api\contract\v1\MerchantAuthenticationType:private] => 
+            [clientKey:net\authorize\api\contract\v1\MerchantAuthenticationType:private] => 
+            [mobileDeviceId:net\authorize\api\contract\v1\MerchantAuthenticationType:private] => 
+        )
+
+    [clientId:net\authorize\api\contract\v1\ANetApiRequestType:private] => sdk-php-1.9.3
+    [refId:net\authorize\api\contract\v1\ANetApiRequestType:private] => ref1509138779
+)
+
+ Fri, 27 Oct 2017 23:12:59 +0200 INFO : [execute] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\api\controller\base\ApiOperationBase.php : 118) - Request  Serialization End
+ Fri, 27 Oct 2017 23:12:59 +0200 INFO : [_sendRequest] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\util\HttpClient.php : 75) -  Url: https://apitest.authorize.net/xml/v1/request.api
+ Fri, 27 Oct 2017 23:12:59 +0200 INFO : [_sendRequest] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\util\HttpClient.php : 77) - Request to AnetApi: 
+<?xml version="1.0" encoding="UTF-8"?>
+<createCustomerProfileRequest xmlns="AnetApi/xml/v1/schema/AnetApiSchema.xsd">
+  <merchantAuthentication>
+    <name><![CDATA[66BB6xppD8qM]]></name>
+    <transactionKey>xxxx</transactionKey>
+  </merchantAuthentication>
+  <clientId><![CDATA[sdk-php-1.9.3]]></clientId>
+  <refId><![CDATA[ref1509138779]]></refId>
+  <profile>
+    <merchantCustomerId><![CDATA[M_1509138779]]></merchantCustomerId>
+    <description><![CDATA[Donor ]]></description>
+  </profile>
+</createCustomerProfileRequest>
+
+ Fri, 27 Oct 2017 23:12:59 +0200 INFO : [_sendRequest] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\util\HttpClient.php : 89) - Sending 'XML' Request type
+ Fri, 27 Oct 2017 23:12:59 +0200 INFO : [_sendRequest] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\util\HttpClient.php : 94) - Sending http request via Curl
+ Fri, 27 Oct 2017 23:13:02 +0200 INFO : [_sendRequest] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\util\HttpClient.php : 96) - Response from AnetApi: ﻿<?xml version="1.0" encoding="utf-8"?><createCustomerProfileResponse xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="AnetApi/xml/v1/schema/AnetApiSchema.xsd"><refId>ref1509138779</refId><messages><resultCode>Ok</resultCode><message><code>I00001</code><text>Successful.</text></message></messages><customerProfileId>1502673012</customerProfileId><customerPaymentProfileIdList /><customerShippingAddressIdList /><validationDirectResponseList /></createCustomerProfileResponse>
+ Fri, 27 Oct 2017 23:13:02 +0200 INFO : [execute] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\api\controller\base\ApiOperationBase.php : 128) - Response De-Serialization Begin
+ Fri, 27 Oct 2017 23:13:02 +0200 INFO : [execute] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\api\controller\base\ApiOperationBase.php : 130) - Response De-Serialization End
