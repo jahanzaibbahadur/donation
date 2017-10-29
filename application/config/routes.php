@@ -61,7 +61,10 @@ $route['thankyou'] = 'user/thankyou';
 
 //amdin routes
 $route['admin'] = 'adminb/dashboard';
-
+$route['admin/users'] = 'adminb/users';
+$route['admin/payment/profiles'] = 'adminb/payment_profiles';
+$route['admin/donation/receipts'] = 'adminb/donation_receipts';
+$route['admin/settings'] = 'adminb/settings';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

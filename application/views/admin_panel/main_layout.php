@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <title>Adminox - Responsive Web App Kit</title>
+        <title>Donatetogo Admin</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
         <meta content="Coderthemes" name="author" />
@@ -197,9 +197,8 @@
 
                                 <ul class="dropdown-menu dropdown-menu-right arrow-dropdown-menu arrow-menu-right user-list notify-list">
                                     <li><a href="javascript:void(0)">Profile</a></li>
-                                    <li><a href="<?php echo base_url(); ?>login/activity">Login Activity</a></li>
                                     <li class="divider"></li>
-                                    <li><a href="<?php echo base_url(); ?>logout">Logout</a></li>
+                                    <li><a href="<?php echo base_url(); ?>admin/logout">Logout</a></li>
                                 </ul>
                             </li>
 
@@ -221,44 +220,23 @@
                         <ul class="metisMenu nav" id="side-menu">
                             <li class="menu-title">Navigation</li>
                             <li>
-                                <a href="<?php echo base_url(); ?>dashboard" aria-expanded="true"><i class="fi-air-play"></i><span class="badge badge-success pull-right">2</span> <span> Dashboard </span></a>
+                                <a href="<?php echo base_url(); ?>admin" aria-expanded="true"><i class="fi-air-play"></i><span class="badge badge-success pull-right">2</span> <span> Dashboard </span></a>
                             </li>
 							
 							<li>
-                                <a href="<?php echo base_url(); ?>users" aria-expanded="true"><i class="fa fa-user"></i> <span> Users </span> </a>
-                            </li>
-
-                            <li <?php if($menu == 'trades') echo 'class="active"'; ?>>
-                                <a href="javascript: void(0);" aria-expanded="true"><i class="fa fa-line-chart"></i> <span> Trades </span> <span class="menu-arrow"></span></a>
-                                <ul class="nav-second-level nav" aria-expanded="true">
-                                    <li><a href="<?php echo base_url(); ?>trades/active">Active Trades</a></li>
-                                    <li><a href="<?php echo base_url(); ?>trades/closed">Closed Trades</a></li>
-                                    <li><a href="<?php echo base_url(); ?>trades/pending">Pending Trades</a></li>
-                                </ul>
-                            </li>
-							
-							<li <?php if($menu == 'trades') echo 'class="active"'; ?>>
-                                <a href="javascript: void(0);" aria-expanded="true"><i class="fa fa-book"></i> <span> Transactions </span> <span class="menu-arrow"></span></a>
-                                <ul class="nav-second-level nav" aria-expanded="true">
-                                    <li><a href="<?php echo base_url(); ?>transactions/deposit">Deposit</a></li>
-                                    <li><a href="<?php echo base_url(); ?>transactions/withdraw">Withdraw</a></li>
-                                </ul>
+                                <a href="<?php echo base_url(); ?>admin/users" aria-expanded="true"><i class="fa fa-user"></i> <span> Users </span> </a>
                             </li>
 							
 							<li>
-                                <a href="<?php echo base_url(); ?>watchlist" aria-expanded="true"><i class="fa fa-eye"></i> <span> Watch List </span> </a>
+                                <a href="<?php echo base_url(); ?>admin/payment/profiles" aria-expanded="true"><i class="fa fa-credit-card"></i> <span> Payment Profiles </span> </a>
                             </li>
 							
 							<li>
-                                <a href="<?php echo base_url(); ?>services" aria-expanded="true"><i class="fa fa-signal"></i> <span> Services </span> </a>
+                                <a href="<?php echo base_url(); ?>admin/donation/receipts" aria-expanded="true"><i class="fa fa-book"></i> <span> Donations </span> </a>
                             </li>
 							
 							<li>
-                                <a href="<?php echo base_url(); ?>trading/pairs" aria-expanded="true"><i class="fa fa-cubes"></i> <span> Trading Pairs </span> </a>
-                            </li>
-							
-							<li>
-                                <a href="<?php echo base_url(); ?>payment/methods" aria-expanded="true"><i class="fa fa-usd"></i> <span> Payment Methods </span> </a>
+                                <a href="<?php echo base_url(); ?>admin/settings" aria-expanded="true"><i class="fa fa-gear"></i> <span> Settings </span> </a>
                             </li>
 
                         </ul>

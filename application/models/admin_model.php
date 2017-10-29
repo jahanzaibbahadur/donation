@@ -5,6 +5,31 @@ class Admin_model extends CI_Model{
 	/**
      * Function to check if user already exists
      */
+	
+	function get_settings() {
+		$query = $this->db->get('settings');
+		return $query->row();
+	}
+	
+	function update_settings() {
+		$data = $this->input->post(null, true);
+		$id = $data['id'];
+		unset($data['id']);
+
+		$this->db->trans_start();
+		$this->db->where('id', $id);
+		$this->db->set($data);
+		$this->db->update('settings');
+		$this->db->trans_complete();
+
+		if ($this->db->trans_status() === FALSE)
+		{
+			return false;
+		}
+		
+		return true;
+	}
+	 
     function check_username($username){
         $this->db->where('username',$username);
         $res = $this->db->get('admins');
@@ -360,10 +385,8 @@ class Admin_model extends CI_Model{
             $email = $row->email ;
             
             return $email;
-        }
-        
+        } 
       }
-      
       
            /**
      * Function to reset the user's password

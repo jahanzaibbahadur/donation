@@ -3,8 +3,19 @@
 class Donation_model extends CI_Model{
 	
 	function get_receipts() {
+		$this->db->select('r.*, u.phone_num, concat(u.firstname, " ",  u.lastname) as name');
 		$this->db->from('receipts r');
 		$this->db->join('users u', 'r.user_id = u.id');
+		$query = $this->db->get();
+		return $query->result();
+	}
+	
+	function last_20_receipts() {
+		$this->db->select('r.*, u.phone_num, concat(u.firstname, " ",  u.lastname) as name');
+		$this->db->from('receipts r');
+		$this->db->join('users u', 'r.user_id = u.id');
+		$this->db->order_by('r.id', 'desc');
+		$this->db->limit(20);
 		$query = $this->db->get();
 		return $query->result();
 	}
