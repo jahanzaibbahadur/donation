@@ -16,7 +16,7 @@
 							<p>A verification code has been sent to your phone # <?php echo $this->session->userdata('register_num');?> </p>
 						</div>
 						<div class="col-xs-5">			
-							<a href="verification_code.php"class="recive">Didn't recive a code?</a>
+							<a href="<?php echo base_url(); ?>resend_verification" class="recive">Didn't recive a code?</a>
 						</div>
 					</div>	
 				</div>
