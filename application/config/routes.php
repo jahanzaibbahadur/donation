@@ -54,6 +54,7 @@ $route['login'] = 'user/login';
 $route['register'] = 'user/register';
 $route['verification'] = 'user/verification';
 $route['security_pin'] = 'user/security_pin';
+$route['resend_verification'] = 'user/resend_verification';
 $route['logout'] = 'user/logout';
 //donation
 $route['donation/confirm'] = 'user/my_donation_confirm';

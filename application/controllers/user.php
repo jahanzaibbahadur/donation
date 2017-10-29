@@ -10,12 +10,46 @@ class User extends CI_Controller {
 		$this->load->model('user_model');
 	}
 	
-	private function is_num_register() {
-		if(!$this->session->has_userdata('register_num')){
-			redirect('register');
-		} 
+	private function is_register() {
+		if($this->session->has_userdata('register_num')&&$this->session->has_userdata('verification'))
+		 {
+			redirect('security_pin');
+		 }else if($this->session->has_userdata('register_num'))
+		 {
+			 redirect('verification');
+		 } 
 	}
-	
+	private function is_verification() {
+		 if($this->session->has_userdata('register_num')&&$this->session->has_userdata('verification'))
+		 {
+			redirect('security_pin');
+		 }else if(!$this->session->has_userdata('register_num'))
+		 {
+			 redirect('register');
+		 }
+	}
+	private function is_security_pin() {
+		if($this->session->has_userdata('register_num')&&!$this->session->has_userdata('verification'))
+		 {
+			redirect('verification');
+		 }else if(!$this->session->has_userdata('register_num'))
+		 {
+			 redirect('register');
+		 }
+	}
+	public function resend_verification()
+	{	
+		if($this->session->has_userdata('register_num')&&!$this->session->has_userdata('verification'))
+		{
+			$this->user_model->send_sms();
+			$data['content'] = 'user/verification';
+		$this->load->view('user/layout', $data);
+		}else
+		{
+			redirect('verification');
+		}
+		
+	}
 	public function Profile()
 	{	
 		if(!is_logged_in()) {
@@ -281,6 +315,7 @@ class User extends CI_Controller {
 		if(is_logged_in()) {
 			redirect('/');
 		}
+		$this->is_register();
 		if($this->input->method() == 'post'){			
 			$config = array(
 							array(
@@ -318,10 +353,10 @@ class User extends CI_Controller {
 		
 	}
 	public function verification()
-	{
-		//$this->is_num_register();
-		//$this->user_model->send_sms();
-		//echo $this->session->userdata('verify');
+	{	if(is_logged_in()) {
+			redirect('/');
+		}
+		$this->is_verification();
 		if($this->input->method() == 'post'){			
 			$config = array(
 							array(
@@ -336,16 +371,7 @@ class User extends CI_Controller {
             
                 if($this->form_validation->run()==TRUE){
 					if(true){
-					//if($activation_hash = $this->auth_model->create_user()){
-				//		$message = $this->load->view('emails/registration',
-				//										array(
-				//											'username'=>$this->input->post('username'),
-				///											'hash'=>$activation_hash
-				//										),
-				//										true
-				//									);
-						//send_our_mail($this->input->post('email'),'Thug Tool Activation Email',$message);
-				//$this->session->set_userdata('register_num',$this->input->post('phone_num'));
+				$this->session->set_userdata('verification',true);
 						$response['status'] = 'success';
 						$response['msg'] = '<div class="alert alert-success"><button class="close" data-close="alert"></button><strong>Success</strong>Verification code is correct.</div>';
 					}else{
@@ -365,7 +391,11 @@ class User extends CI_Controller {
 		
 	}
 	public function security_pin()
-	{ 
+	{ 	
+		if(is_logged_in()) {
+			redirect('/');
+		}
+		$this->is_security_pin();
 		if($this->input->method() == 'post')
 		{
 			$config = array(
@@ -381,6 +411,7 @@ class User extends CI_Controller {
                 if($this->form_validation->run()==TRUE){
 					$this->user_model->create_user();
 					if(true){
+						$this->session->sess_destroy();
 						$response['status'] = 'success';
 						$response['msg'] = '<div class="alert alert-success"><button class="close" data-close="alert"></button><strong>Success</strong>  Registration successfull.</div>';
 					}else{
