@@ -3,6 +3,31 @@
  * Author: Coderthemes
  * Toastr js
  */
+ 
+function notify(title,message,type,delay=3000){
+	
+	var background = '';
+	
+	if(type == 'success') {
+		background = '#5ba035';
+	}else if(type == 'warning') {
+		background = '#da8609';
+	}else if(type == 'info') {
+		background = '#3b98b5';
+	}else if(type == 'error') {
+		background = '#bf441d';
+	}
+	
+	$.toast({
+        heading: title,
+        text: message,
+        position: 'top-right',
+        loaderBg: background,
+        icon: type,
+        hideAfter: delay,
+        stack: 1
+    });
+}
 
 $("#toastr-one").click(function () {
     $.toast({

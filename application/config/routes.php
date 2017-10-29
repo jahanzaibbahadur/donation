@@ -58,5 +58,10 @@ $route['logout'] = 'user/logout';
 //donation
 $route['donation/confirm'] = 'user/my_donation_confirm';
 $route['thankyou'] = 'user/thankyou';
+
+//amdin routes
+$route['admin'] = 'adminb/dashboard';
+
+
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

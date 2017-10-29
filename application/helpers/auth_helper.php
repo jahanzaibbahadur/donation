@@ -19,6 +19,21 @@ if( !function_exists('is_logged_in') ){
  * Is there a user who is logged in right now?
  *
  */
+if( !function_exists('is_admin_logged_in') ){
+    function is_admin_logged_in(){
+		
+		$CI =& get_instance();
+		
+        if( $CI->session->userdata('admin')['is_logged_in'] ){
+            return true;
+        } else return false;
+    }
+}
+
+/**
+ * Is there a user who is logged in right now?
+ *
+ */
 if( !function_exists('hash_password') ){
     function hash_password($password){
 		$CI =& get_instance();
@@ -103,5 +118,13 @@ if( !function_exists('destroy_session') ){
 		$CI =& get_instance();
 		$CI->session->sess_destroy();
 		redirect("/");
+	}
+}
+
+if( !function_exists('destroy_admin_session') ){
+	function destroy_admin_session(){
+		$CI =& get_instance();
+		$CI->session->unset_userdata('admin');
+		redirect("admin/login");
 	}
 }
