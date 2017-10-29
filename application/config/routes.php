@@ -56,7 +56,7 @@ $route['verification'] = 'user/verification';
 $route['security_pin'] = 'user/security_pin';
 $route['logout'] = 'user/logout';
 //donation
-$route['my_donation_confirm'] = 'user/my_donation_confirm';
+$route['donation/confirm'] = 'user/my_donation_confirm';
 $route['thankyou'] = 'user/thankyou';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

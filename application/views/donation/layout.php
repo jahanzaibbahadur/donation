@@ -1,8 +1,8 @@
 <html>
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
-		<link href="assets/mobile.css" media="screen" rel="stylesheet" type="text/css">
-		<script src="assets/mobile.js" type="text/javascript"></script>
+		<link href="<?php echo base_url(); ?>assets/mobile.css" media="screen" rel="stylesheet" type="text/css">
+		<script src="<?php echo base_url(); ?>assets/mobile.js" type="text/javascript"></script>
 		
 		<style>
 		.form-control:focus {

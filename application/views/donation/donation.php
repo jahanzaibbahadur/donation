@@ -211,9 +211,7 @@
 				</div>
 			</div>
 		</div>
-		
 <script>
-
 var Donation = function() {
  
 	var handleProfile = function() {
@@ -299,16 +297,16 @@ var Donation = function() {
             submitHandler: function(form) {
                 //form[0].submit();
 				var data = $(form).serialize();
-				data = data + '&' + token_name + '=' + token;
+				data = data + '&action=profile';
 				console.log(data);
-				$url = base_url + 'Profile';
+				$url = '';
 				$.post($url, data, function(response){
 					if(response.status == 'success'){
 						$('#message-box').html(response.msg);
 						form.reset();
 						setTimeout(function(){
-							location.href = base_url + 'verification';
-					}, 500) 
+							location.href = base_url + 'donation/confirm';
+						}, 500) 
 					}
 					$('#message-box').html(response.msg);
 					//token = response.token;
@@ -348,7 +346,6 @@ document.addEventListener('DOMContentLoaded', function() {
     })	
 }, false);
 </script>
-		
 		<?php }else{ ?>
 		<div class="row">
 			<div class="col-xs-12">
@@ -367,6 +364,92 @@ document.addEventListener('DOMContentLoaded', function() {
 				</div>
 			</div>
 		</div>
+<script>
+var Donation = function() {
+ 
+	var handleProfile = function() {
+
+        $('.profile-form').validate({
+            errorElement: 'span', //default input error message container
+            errorClass: 'help-block', // default input error message class
+            focusInvalid: true, // do not focus the last invalid input
+            ignore: "",
+            rules: {
+            },
+
+           messages: {
+            },
+
+            invalidHandler: function(event, validator) { //display error alert on form submit   
+
+            },
+
+            highlight: function(element) { // hightlight error inputs
+                $(element)
+                    .closest('.form-group').addClass('has-error'); // set error class to the control group
+            },
+
+            success: function(label) {
+                label.closest('.form-group').removeClass('has-error');
+                label.remove();
+            },
+
+            errorPlacement: function(error, element) {
+                error.insertAfter(element);
+            },
+
+            submitHandler: function(form) {
+                //form[0].submit();
+				var data = $(form).serialize();
+				data = data + '&action=profile';
+				console.log(data);
+				$url = '';
+				$.post($url, data, function(response){
+					if(response.status == 'success'){
+						$('#message-box').html(response.msg);
+						form.reset();
+						setTimeout(function(){
+							location.href = base_url + 'donation/confirm';
+						}, 500) 
+					}
+					$('#message-box').html(response.msg);
+					//token = response.token;
+					//console.log(response);
+				},'json');
+            }
+        });
+
+        $('.profile-form input').keypress(function(e) {
+            if (e.which == 13) {
+                if ($('.profile-form').validate().form()) {
+                    $('.profile-form').submit();
+                }
+                return false;
+            }
+        });
+	}
+
+    return {
+        //main function to initiate the module
+        init: function() {
+            handleProfile();
+        }
+    };
+}();
+
+document.addEventListener('DOMContentLoaded', function() {
+    var phone = $('#phone');
+    phone.keyup(function() {
+      if (phone.val().charAt(0) == 0) {
+        phone.unmask();
+      } else if (phone.val().charAt(0) == 1) {
+        phone.mask('1-000-000-0000');
+      } else {
+        phone.mask('000-000-0000');
+      }
+    })	
+}, false);
+</script>
 		<?php }?>
 		
 		<p id="notice"></p>
@@ -379,8 +462,11 @@ document.addEventListener('DOMContentLoaded', function() {
 	</div>
 </form>
 <script>
-
-
+function update_pro(){
+$.post('', {'action':'update_profile'}, function(result){
+		 setTimeout(function(){ location.reload(); }, 1000);
+});
+}
 document.addEventListener('DOMContentLoaded', function() {
     $.validator.setDefaults({
 		ignore: []

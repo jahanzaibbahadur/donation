@@ -23,75 +23,165 @@ class User extends CI_Controller {
 		}
 		if($this->input->method() == 'post'){
 			
-			$config = array(
-							array(
-									'field'=>'first_name',
-									'label'=>'first_name',
-									'rules'=>'required'
-							),
-							array(
-									'field'=>'last_name',
-									'label'=>'last_name',
-									'rules'=>'required'
-							),
-							array(
-									'field'=>'phone',
-									'label'=>'phone',
-									'rules'=>'required'
-							),
-							array(
-									'field'=>'email',
-									'label'=>'email',
-									'rules'=>'required'
-							),
-							array(
-									'field'=>'address',
-									'label'=>'address',
-									'rules'=>'required'
-							),
-							array(
-									'field'=>'city',
-									'label'=>'city',
-									'rules'=>'required'
-							),
-							array(
-									'field'=>'state',
-									'label'=>'state',
-									'rules'=>'required'
-							),
-							array(
-									'field'=>'zip',
-									'label'=>'zip',
-									'rules'=>'required'
-							),
-							
-                );
-			
-			$this->form_validation->set_rules($config);
-			$this->form_validation->set_error_delimiters('<li>', '</li>');
-			if($this->form_validation->run()==true){
-				$this->user_model->update_user();
-				$user = $this->user_model->get_user();
-				$setting=$this->user_model->get_setting();
-				
-				$authorize = new Authorize();
-				$response = $authorize->CreateCustomerProfile($user,$setting);
-				
-				if($response['status'] == 'success') {
-					$this->user_model->update_profile_id($response['profile_id']);
-				}
-				
-				$response['url'] = '/';
-				
-				$response['status'] = 'success';
-				$response['msg'] = '<div class="alert alert-success"><button class="close" data-close="alert"></button><strong>Success!</strong> Login successfull.</div>';
-			}else{
-				$response['status'] = 'error';
-				$response['msg'] = '<div class="alert alert-danger"><button class="close" data-close="alert"></button>'. validation_errors() .'</div>';
+			if($this->input->post('action') == 'update_profile') {
+				$this->session->set_userdata('update_profile', 'update');
+				exit;
 			}
-			$response['token'] = $this->security->get_csrf_hash();
-			echo json_encode($response);
-			exit;
+			
+			if($this->input->post('action') == 'profile' && $this->session->userdata('update_profile') == 'update') {
+				$config = array(
+								array(
+										'field'=>'first_name',
+										'label'=>'first_name',
+										'rules'=>'required'
+								),
+								array(
+										'field'=>'last_name',
+										'label'=>'last_name',
+										'rules'=>'required'
+								),
+								array(
+										'field'=>'phone',
+										'label'=>'phone',
+										'rules'=>'required'
+								),
+								array(
+										'field'=>'email',
+										'label'=>'email',
+										'rules'=>'required'
+								),
+								array(
+										'field'=>'address',
+										'label'=>'address',
+										'rules'=>'required'
+								),
+								array(
+										'field'=>'city',
+										'label'=>'city',
+										'rules'=>'required'
+								),
+								array(
+										'field'=>'state',
+										'label'=>'state',
+										'rules'=>'required'
+								),
+								array(
+										'field'=>'zip',
+										'label'=>'zip',
+										'rules'=>'required'
+								),
+								
+					);
+				
+				$this->form_validation->set_rules($config);
+				$this->form_validation->set_error_delimiters('<li>', '</li>');
+				if($this->form_validation->run()==true){
+					$this->user_model->update_user();
+					$user = $this->user_model->get_user();
+					$setting=$this->user_model->get_setting();
+					
+					$authorize = new Authorize();
+					$response = $authorize->CreateCustomerProfile($user,$setting);
+					
+					if($payment_profiles_count > 0){
+						$payment_profiles = $this->user_model->get_payment_profiles();
+						foreach($payment_profiles as $profile) {
+							$authorize->updateCustomerPaymentProfile($user,$profile,$setting);
+						}
+					}
+					
+					
+					$response['url'] = '/';
+					
+					$response['status'] = 'success';
+					$response['msg'] = '<div class="alert alert-success"><button class="close" data-close="alert"></button><strong>Success!</strong> Login successfull.</div>';
+				}else{
+					$response['status'] = 'error';
+					$response['msg'] = '<div class="alert alert-danger"><button class="close" data-close="alert"></button>'. validation_errors() .'</div>';
+				}
+				$response['token'] = $this->security->get_csrf_hash();
+				echo json_encode($response);
+				exit;
+			} else if($this->input->post('action') == 'profile') {
+				$user = $this->user_model->get_user();
+				
+				if($user->profileid == '') {
+					$config = array(
+								array(
+										'field'=>'first_name',
+										'label'=>'first_name',
+										'rules'=>'required'
+								),
+								array(
+										'field'=>'last_name',
+										'label'=>'last_name',
+										'rules'=>'required'
+								),
+								array(
+										'field'=>'phone',
+										'label'=>'phone',
+										'rules'=>'required'
+								),
+								array(
+										'field'=>'email',
+										'label'=>'email',
+										'rules'=>'required'
+								),
+								array(
+										'field'=>'address',
+										'label'=>'address',
+										'rules'=>'required'
+								),
+								array(
+										'field'=>'city',
+										'label'=>'city',
+										'rules'=>'required'
+								),
+								array(
+										'field'=>'state',
+										'label'=>'state',
+										'rules'=>'required'
+								),
+								array(
+										'field'=>'zip',
+										'label'=>'zip',
+										'rules'=>'required'
+								),
+								
+					);
+				
+					$this->form_validation->set_rules($config);
+					$this->form_validation->set_error_delimiters('<li>', '</li>');
+					if($this->form_validation->run()==true){
+						$this->user_model->update_user();
+						$user = $this->user_model->get_user();
+						$setting=$this->user_model->get_setting();
+						
+						$authorize = new Authorize();
+						$response = $authorize->CreateCustomerProfile($user,$setting);
+						
+						if($response['status'] == 'success') {
+							$this->user_model->update_profile_id($response['profile_id']);
+						}
+						
+						$response['url'] = '/';
+						
+						$response['status'] = 'success';
+						$response['msg'] = '<div class="alert alert-success"><button class="close" data-close="alert"></button><strong>Success!</strong> Login successfull.</div>';
+					}else{
+						$response['status'] = 'error';
+						$response['msg'] = '<div class="alert alert-danger"><button class="close" data-close="alert"></button>'. validation_errors() .'</div>';
+					}
+					$response['token'] = $this->security->get_csrf_hash();
+					echo json_encode($response);
+					exit;
+				} else {
+					$response['status'] = 'success';
+					$response['msg'] = '<div class="alert alert-success"><button class="close" data-close="alert"></button><strong>Success!</strong> Login successfull.</div>';
+					echo json_encode($response);
+					exit;
+				}
+			}
 		}
 		
 		$data['user'] = $this->user_model->get_user();

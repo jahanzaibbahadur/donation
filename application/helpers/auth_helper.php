@@ -43,8 +43,7 @@ if( !function_exists('hash_password') ){
 if( !function_exists('verify_password') ){
     function verify_password($password, $hash){
 		$CI =& get_instance();
-		//return password_verify($password, $hash);
-		return true;
+		return password_verify($password, $hash);
     }
 }
 

@@ -15,44 +15,44 @@ class Authorize {
 	
 	function CreateCustomerProfile($user,$setting)
 	{
-	/* Create a merchantAuthenticationType object with authentication details
-	   retrieved from the constants file */
-	$merchantAuthentication = new AnetAPI\MerchantAuthenticationType();
-	$merchantAuthentication->setName($setting->MERCHANT_LOGIN_ID);
-	$merchantAuthentication->setTransactionKey($setting->MERCHANT_TRANSACTION_KEY);
-	
-	// Set the transaction's refId
-	$refId = 'ref' . time();
-	
-	// Create a new CustomerProfileType and add the payment profile object
-	$customerProfile = new AnetAPI\CustomerProfileType();
-	$customerProfile->setDescription("Donor ".$user->id);
-	$customerProfile->setMerchantCustomerId("M_" . time());
-	$customerProfile->setEmail($user->email);
-	
-	// Assemble the complete transaction request
-	$request = new AnetAPI\CreateCustomerProfileRequest();
-	$request->setMerchantAuthentication($merchantAuthentication);
-	$request->setRefId($refId);
-	$request->setProfile($customerProfile);
-	// Create the controller and get the response
-	$controller = new AnetController\CreateCustomerProfileController($request);
-	$response = $controller->executeWithApiResponse(\net\authorize\api\constants\ANetEnvironment::SANDBOX);
-  
-	if (($response != null) && ($response->getMessages()->getResultCode() == "Ok")) {
-		$res = ['status' => 'success','profile_id' => $response->getCustomerProfileId()];
-		//echo json_encode(array('status' => 'success', 'profile_id' => $response->getCustomerProfileId()));
-			//echo "Succesfully created customer profile : " . $response->getCustomerProfileId() . "\n";
-		//echo "SUCCESS: PAYMENT PROFILE ID : " . $paymentProfiles[0] . "\n";
-	} else {
-		//echo "ERROR :  Invalid response\n";
-		$errorMessages = $response->getMessages()->getMessage();
-		$res = ['status' => 'error', 'code' => $errorMessages[0]->getCode(), 'message' => $errorMessages[0]->getText()];
-		//echo json_encode(array('status' => 'failed', 'message' => $errorMessages[0]->getText()));
-		//echo "Response : " . $errorMessages[0]->getCode() . "  " .$errorMessages[0]->getText() . "\n";
+		/* Create a merchantAuthenticationType object with authentication details
+		   retrieved from the constants file */
+		$merchantAuthentication = new AnetAPI\MerchantAuthenticationType();
+		$merchantAuthentication->setName($setting->MERCHANT_LOGIN_ID);
+		$merchantAuthentication->setTransactionKey($setting->MERCHANT_TRANSACTION_KEY);
+		
+		// Set the transaction's refId
+		$refId = 'ref' . time();
+		
+		// Create a new CustomerProfileType and add the payment profile object
+		$customerProfile = new AnetAPI\CustomerProfileType();
+		$customerProfile->setDescription("Donor ".$user->id);
+		$customerProfile->setMerchantCustomerId("M_" . time());
+		$customerProfile->setEmail($user->email);
+		
+		// Assemble the complete transaction request
+		$request = new AnetAPI\CreateCustomerProfileRequest();
+		$request->setMerchantAuthentication($merchantAuthentication);
+		$request->setRefId($refId);
+		$request->setProfile($customerProfile);
+		// Create the controller and get the response
+		$controller = new AnetController\CreateCustomerProfileController($request);
+		$response = $controller->executeWithApiResponse(\net\authorize\api\constants\ANetEnvironment::SANDBOX);
+	  
+		if (($response != null) && ($response->getMessages()->getResultCode() == "Ok")) {
+			$res = ['status' => 'success','profile_id' => $response->getCustomerProfileId()];
+			//echo json_encode(array('status' => 'success', 'profile_id' => $response->getCustomerProfileId()));
+				//echo "Succesfully created customer profile : " . $response->getCustomerProfileId() . "\n";
+			//echo "SUCCESS: PAYMENT PROFILE ID : " . $paymentProfiles[0] . "\n";
+		} else {
+			//echo "ERROR :  Invalid response\n";
+			$errorMessages = $response->getMessages()->getMessage();
+			$res = ['status' => 'error', 'code' => $errorMessages[0]->getCode(), 'message' => $errorMessages[0]->getText()];
+			//echo json_encode(array('status' => 'failed', 'message' => $errorMessages[0]->getText()));
+			//echo "Response : " . $errorMessages[0]->getCode() . "  " .$errorMessages[0]->getText() . "\n";
+		}
+		return $res;
 	}
-	return $res;
-}
 function updateCustomerPaymentProfile($user,$profile,$setting) {
 	$customerProfileId=$user['profileid'];
     /* Create a merchantAuthenticationType object with authentication details

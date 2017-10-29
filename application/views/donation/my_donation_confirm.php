@@ -32,7 +32,7 @@
  <a href="javascript:;" onclick="change_donation()">CHANGE</a>
  <script>
  function change_donation(){
-	 $.post('change_donation.php', {'action':'change_donation'}, function(result){
+	 $.post('', {'action':'change_donation'}, function(result){
 		 setTimeout(function(){ location.reload(); }, 1000);
 	 });
  }
@@ -71,10 +71,10 @@ if(count($payment_profiles) > 0){
 <input autocomplete="off" class="new_look_full_width form-control" id="card_number" name="card_number" placeholder="XXXX XXXX XXXX XXXX" required="required" type="tel">
 </div>
 <div class="col-xs-5 padding-left-none padding-right-none">
-<img alt="Visa_color_icon" class="deselected cards" id="visa" src="assets/visa_color_icon-985bccb19cc954fba005b7374a1ba081.png" title="Visa">
-<img alt="Master_card_color_icon" class="deselected cards" id="mastercard" src="assets/master_card_color_icon-8e4b8cb184a416c8e7740c133374920e.png" title="Master Card">
-<img alt="American_express_color_icon" class="deselected cards" id="amex" src="assets/american_express_color_icon-f26f48991a9fa06e010b06a971bad00d.png" title="American Express">
-<img alt="Discover_color_icon" class="deselected cards" id="discover" src="assets/discover_color_icon-e2c1bc436f2842f18964f0e9f84c7020.png" title="Discover">
+<img alt="Visa_color_icon" class="deselected cards" id="visa" src="<?php echo base_url(); ?>assets/visa_color_icon-985bccb19cc954fba005b7374a1ba081.png" title="Visa">
+<img alt="Master_card_color_icon" class="deselected cards" id="mastercard" src="<?php echo base_url(); ?>assets/master_card_color_icon-8e4b8cb184a416c8e7740c133374920e.png" title="Master Card">
+<img alt="American_express_color_icon" class="deselected cards" id="amex" src="<?php echo base_url(); ?>assets/american_express_color_icon-f26f48991a9fa06e010b06a971bad00d.png" title="American Express">
+<img alt="Discover_color_icon" class="deselected cards" id="discover" src="<?php echo base_url(); ?>assets/discover_color_icon-e2c1bc436f2842f18964f0e9f84c7020.png" title="Discover">
 </div>
 </div>
 </div>
@@ -209,13 +209,13 @@ document.addEventListener('DOMContentLoaded', function() {
 function show_card_logo(){
 		var ctype = $('select[name=payment_profile] option:selected').data('type');
 		if(ctype == 'VISA') {
-			$('#card_logo').html('<img alt="Visa_color_icon" class="which-cards" id="visa" src="assets/visa_color_icon-985bccb19cc954fba005b7374a1ba081.png" title="Visa">');
+			$('#card_logo').html('<img alt="Visa_color_icon" class="which-cards" id="visa" src="<?php echo base_url(); ?>assets/visa_color_icon-985bccb19cc954fba005b7374a1ba081.png" title="Visa">');
 		}else if(ctype == 'MASTERCARD'){
-			$('#card_logo').html('<img alt="Master_card_color_icon" class="which-cards" id="mastercard" src="assets/master_card_color_icon-8e4b8cb184a416c8e7740c133374920e.png" title="Master Card">');
+			$('#card_logo').html('<img alt="Master_card_color_icon" class="which-cards" id="mastercard" src="<?php echo base_url(); ?>assets/master_card_color_icon-8e4b8cb184a416c8e7740c133374920e.png" title="Master Card">');
 		}else if(ctype == 'AMEX'){
-			$('#card_logo').html('<img alt="American_express_color_icon" class="which-cards" id="amex" src="assets/american_express_color_icon-f26f48991a9fa06e010b06a971bad00d.png" title="American Express">');
+			$('#card_logo').html('<img alt="American_express_color_icon" class="which-cards" id="amex" src="<?php echo base_url(); ?>assets/american_express_color_icon-f26f48991a9fa06e010b06a971bad00d.png" title="American Express">');
 		}else if(ctype == 'DISCOVER'){
-			$('#card_logo').html('<img alt="Discover_color_icon" class="which-cards" id="discover" src="assets/discover_color_icon-e2c1bc436f2842f18964f0e9f84c7020.png" title="Discover">');
+			$('#card_logo').html('<img alt="Discover_color_icon" class="which-cards" id="discover" src="<?php echo base_url(); ?>assets/discover_color_icon-e2c1bc436f2842f18964f0e9f84c7020.png" title="Discover">');
 		}else{
 		}
 }
@@ -260,7 +260,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			
 			$('.form-submit-button').attr('disabled', 'true');
 			$('.form-submit-button').text('Processing...');
-			var ajaxurl = 'creatcustomerprofile.php';
+			var ajaxurl = '';
 			$.post(ajaxurl, data, function(result){
 				if(result.status == 'success'){
 					$('.form-submit-button').text('Success');
