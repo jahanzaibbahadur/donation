@@ -1,6 +1,19 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class user_model extends CI_Model{
+class user_model extends CI_Model {
+	
+	private $user_id = null;
+	
+	public function __construct()
+	{
+		parent::__construct();
+		$this->user_id = $this->session->userdata('user')['id'];
+	}
+	
+	function get_users() {
+		$query = $this->db->get('users');
+		return $query->result();
+	}
 	
 	function create_user()
 	{
@@ -34,13 +47,13 @@ class user_model extends CI_Model{
 	}
 	
 	function get_user() {	
-		$this->db->where('id',$this->session->userdata('id'));
+		$this->db->where('id', $this->user_id);
 		$query = $this->db->get('users');
 		return $query->row();
 	}
 	
 	function get_payment_profiles() {
-		$this->db->where('user_id', $this->session->userdata('id'));
+		$this->db->where('user_id', $this->user_id);
 		$query = $this->db->get('payment_profiles');
 		return $query->result();
 	}
@@ -75,7 +88,7 @@ class user_model extends CI_Model{
 			   'state' => $profile['state'],
 			   'zip' => $profile['zip']
             );
-		$this->db->where('id', $this->session->userdata('id'));
+		$this->db->where('id', $this->user_id);
 		$this->db->update('users', $data);
 	}
 	

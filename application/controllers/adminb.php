@@ -16,8 +16,9 @@ class Adminb extends CI_Controller {
 	
 	public function dashboard()
 	{ 	
-					
-		echo 'Dashboard'; exit;
+		$this->load->model('user_model');
+		//$data = $this->donation_model->get_receipts(); echo '<pre>'; print_r($data); exit;
+		$data = $this->user_model->get_users(); echo '<pre>'; print_r($data); exit;
 		
 		$data['menu'] = 'dashboard';
 		$data['content'] = 'dashboard';

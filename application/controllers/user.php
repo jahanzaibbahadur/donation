@@ -292,7 +292,7 @@ class User extends CI_Controller {
 			if($this->form_validation->run()==true){
 				$userdata = $this->user_model->get_userdata($this->input->post('phone_num'));
 				$userdata['is_logged_in'] = true;
-				$this->session->set_userdata($userdata);
+				$this->session->set_userdata(array('user' => $userdata));
 				
 				$response['url'] = '/';
 				
