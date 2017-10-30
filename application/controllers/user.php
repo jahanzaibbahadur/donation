@@ -302,14 +302,14 @@ class User extends CI_Controller {
 				$receipt_id = $this->user_model->insert_receipt($receipt_data);
 				$receipt = $this->donation_model->get_receipt($receipt_id);
 				$settings = get_settings();
-				$receipt_html = $this->load->view('donation/receipt', ['user' => $user, 'receipt' => $receipt, 'settings' => $settings]);
+				$receipt_html = $this->load->view('donation/receipt', ['user' => $user, 'receipt' => $receipt, 'settings' => $settings], true);
 				
 				$email= $user->email;
 				
 				//$config['protocol'] = 'sendmail';
 				//$config['mailpath'] = '/usr/sbin/sendmail';
 				$config['charset'] = 'iso-8859-1';
-				$config['mailtype'] = 'html',
+				$config['mailtype'] = 'html';
 				$config['wordwrap'] = TRUE;
 
 				$this->email->initialize($config);

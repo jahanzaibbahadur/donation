@@ -296,6 +296,75 @@ class Authorize {
 		}
 		return $res;
 	}
+ function createSubscriptionFromCustomerProfile($intervalLength, $customerProfileId,
+    $customerPaymentProfileId) {
+    /* Create a merchantAuthenticationType object with authentication details
+       retrieved from the constants file */
+		$merchantAuthentication = new AnetAPI\MerchantAuthenticationType();
+		$merchantAuthentication->setName($this->settings->MERCHANT_LOGIN_ID);
+		$merchantAuthentication->setTransactionKey($this->settings->MERCHANT_TRANSACTION_KEY);
+    
+    // Set the transaction's refId
+    $refId = 'ref' . time();
+	
+    // Subscription Type Info
+    $subscription = new AnetAPI\ARBSubscriptionType();
+    $subscription->setName("Hilal Tech Membership Subscription");
 
+    $interval = new AnetAPI\PaymentScheduleType\IntervalAType();
+    $interval->setLength($intervalLength);
+    $interval->setUnit("months");
+
+    $paymentSchedule = new AnetAPI\PaymentScheduleType();
+    $paymentSchedule->setInterval($interval);
+    $paymentSchedule->setStartDate(new DateTime('now'));
+    $paymentSchedule->setTotalOccurrences("12");
+    //$paymentSchedule->setTrialOccurrences("1");
+
+    $subscription->setPaymentSchedule($paymentSchedule);
+    $subscription->setAmount($_SESSION['amount']);
+   // $subscription->setTrialAmount("0.00");
+    
+    $profile = new AnetAPI\CustomerProfileIdType();
+    $profile->setCustomerProfileId($customerProfileId);
+    $profile->setCustomerPaymentProfileId($customerPaymentProfileId);
+    $profile->setCustomerAddressId($customerAddressId);
+
+    $subscription->setProfile($profile);
+
+    $request = new AnetAPI\ARBCreateSubscriptionRequest();
+    $request->setmerchantAuthentication($merchantAuthentication);
+    $request->setRefId($refId);
+    $request->setSubscription($subscription);
+    $controller = new AnetController\ARBCreateSubscriptionController($request);
+
+    $response = $controller->executeWithApiResponse( \net\authorize\api\constants\ANetEnvironment::SANDBOX);
+    
+    if (($response != null) && ($response->getMessages()->getResultCode() == "Ok") )
+    {
+       // echo "SUCCESS: Subscription ID : " . $response->getSubscriptionId() . "\n";
+	  // $_SESSION['thankyou']="thankyou";
+	   //$tranid =  $response->getSubscriptionId();
+	  // insert_row("insert into recipt(user_id,payment_id,txid,amount,recurring,donated_at) values('".$_SESSION['user_id']."','".$_POST['payment_profile']."','".$tranid."','".$_SESSION['amount']."','".$_SESSION['recurring_frequency']."','".$now_datetime."')");
+	$res = ['status' => 'success', 'trans_id' => $response->getSubscriptionId(), 'auth_code' => $response->getAuthCode(), 'response_code' => $response->getResponseCode(), 'description' => $response->getMessages()[0]->getDescription()];
+	//$id= mysql_insert_id();
+	//recipt($id);	  
+	  //echo json_encode(array('status' => 'success'));
+     }
+    else
+    {
+		$error_code = $response->getMessages()->getMessage()[0]->getCode();
+		$error_message = $response->getMessages()->getMessage()[0]->getText();
+			
+		$res =['status' => 'failed', 'message' => $error_message, 'code' => $error_code];
+       // echo "ERROR :  Invalid response\n";
+       // $errorMessages = $response->getMessages()->getMessage();
+       // echo "Response : " . $errorMessages[0]->getCode() . "  " .$errorMessages[0]->getText() . "\n";
+    }
+	//unset($_SESSION['amount']);
+//exit();
+
+    //return $response;
+  }
 }
 ?>
