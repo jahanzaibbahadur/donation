@@ -131,7 +131,7 @@
 			</div>
 		</div>
 
-		<?php if($user->profileid == '' || true) { ?>
+		<?php if($user->profileid == '' || $this->session->has_userdata('update_profile') == 'update') { ?>
 		<div class="row">
 			<div class="col-xs-12">
 				<div class="new_look_midline_text">
@@ -302,13 +302,11 @@ var Donation = function() {
 				$url = '';
 				$.post($url, data, function(response){
 					if(response.status == 'success'){
-						$('#message-box').html(response.msg);
+						//$('#message-box').html(response.msg);
 						form.reset();
-						setTimeout(function(){
-							location.href = base_url + 'donation/confirm';
-						}, 500) 
+						location.href = base_url + 'donation/confirm';
 					}
-					$('#message-box').html(response.msg);
+					//$('#message-box').html(response.msg);
 					//token = response.token;
 					//console.log(response);
 				},'json');
@@ -406,13 +404,11 @@ var Donation = function() {
 				$url = '';
 				$.post($url, data, function(response){
 					if(response.status == 'success'){
-						$('#message-box').html(response.msg);
+						//$('#message-box').html(response.msg);
 						form.reset();
-						setTimeout(function(){
-							location.href = base_url + 'donation/confirm';
-						}, 500) 
+						location.href = base_url + 'donation/confirm';
 					}
-					$('#message-box').html(response.msg);
+					//$('#message-box').html(response.msg);
 					//token = response.token;
 					//console.log(response);
 				},'json');
@@ -453,7 +449,6 @@ document.addEventListener('DOMContentLoaded', function() {
 		<?php }?>
 		
 		<p id="notice"></p>
-		
 		<div class="row top-large">
 			<div class="col-xs-12">
 			<button class="btn btn-donation btn-block btn-lg form-submit-button" data-pointer-submit="true" id="next-donation" name="next_submit"  type="submit">Next</button>
@@ -461,10 +456,13 @@ document.addEventListener('DOMContentLoaded', function() {
 		</div>
 	</div>
 </form>
+<div style="text-align:center; margin-top:50px;">
+<a href="<?php echo base_url(); ?>logout" class="btn btn-info" style="border:none">logout</a>
+</div>
 <script>
 function update_pro(){
 $.post('', {'action':'update_profile'}, function(result){
-		 setTimeout(function(){ location.reload(); }, 1000);
+	location.reload();
 });
 }
 document.addEventListener('DOMContentLoaded', function() {

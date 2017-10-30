@@ -11,15 +11,15 @@
 <div class="form-group">
 <div  style="background-color:#ececf9;">
 <div style="margin-left: 27px;">
-<p id="notice" style="font-size: 25px;">  Please Confirm your donation of<br> <strong>$</strong><?php echo "20";//$_SESSION['amount'];
-?> to <strong><?php echo $setting->comp_name; ?></strong></p>
+<p id="notice" style="font-size: 25px;">  Please Confirm your donation of<br> <strong>$</strong><?php echo $this->session->userdata('amount');
+?> to <strong><?php echo $settings->comp_name; ?></strong></p>
  <ul>
   <strong>
-  <?php $recurring_frequency ='monthly';//$_SESSION['recurring_frequency'];
+  <?php 
 	
-	if($recurring_frequency == 'monthly'||$recurring_frequency == 'quarterly'||$recurring_frequency == 'yearly'){
+	if($this->session->has_userdata('recurring_frequency')){
 		?>
-		<li>Donation Recurring <?php echo $recurring_frequency;?></li>
+		<li>Donation Recurring <?php echo $this->session->userdata('recurring_frequency');?></li>
 	<?php 	
 		}else{
 	?>
@@ -33,8 +33,10 @@
  <script>
  function change_donation(){
 	 $.post('', {'action':'change_donation'}, function(result){
-		 setTimeout(function(){ location.reload(); }, 1000);
-	 });
+		 if(result.status) {
+			 location.href = '<?php echo base_url(); ?>';
+		 }
+	 }, 'json');
  }
  </script>
  <br><br>
@@ -235,7 +237,7 @@ function show_card_logo(){
 
 <div class="row">
 <div class="col-xs-12">
-<div class="new_look_big_text new_look_select_color_text" data-linked-label="true" id="total_amount_label">$<?php //echo $_SESSION['amount'];?></div>
+<div class="new_look_big_text new_look_select_color_text" data-linked-label="true" id="total_amount_label">$<?php echo $this->session->userdata('amount'); ?></div>
 </div>
 </div>
 <div class="row top-large">
@@ -247,6 +249,10 @@ function show_card_logo(){
 <p id="notice"></p>
 
 </form>
+
+<div style="text-align:center; margin-top:50px;">
+<a href="<?php echo base_url(); ?>logout" class="btn btn-info" style="border:none">logout</a>
+</div>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -261,7 +267,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			$('.form-submit-button').attr('disabled', 'true');
 			$('.form-submit-button').text('Processing...');
 			var ajaxurl = '';
-			$.post(ajaxurl, data, function(result){
+			$.post(ajaxurl, data, function(result){ console.log(result);
 				if(result.status == 'success'){
 					$('.form-submit-button').text('Success');
 					$('#donation_form')[0].reset();
@@ -270,7 +276,7 @@ document.addEventListener('DOMContentLoaded', function() {
 					$('#donation_form')[0].reset();
 				}
 				
-				setTimeout(function(){ location.href = base_url + 'thankuou'; }, 1000);
+				setTimeout(function(){ location.href = base_url + 'thankyou'; }, 1000);
 			},'json');
 		}
 	});		

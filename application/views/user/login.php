@@ -21,10 +21,8 @@
 								</div>
 							</div>
 							<div class="form-group text-center" >
-								<div class="row">
-									<div class="col-lg-4 col-md-4"><label class="visible-md visible-lg"><h4>Enter Security PIN</h4></label><label class="visible-sm visible-xs">Enter Security PIN</label></div>
-									<div class="col-lg-4 col-md-4"><input type="text" id="pincode-input5" name="password"></div>
-								</div>
+								<div class="col-lg-4 col-md-4"><label class="visible-md visible-lg"><h4>Enter Security PIN</h4></label><label class="visible-sm visible-xs">Enter Security PIN</label></div>
+								<div class="col-lg-4 col-md-4"><input type="text" id="pincode-input5" name="password"></div>
 							</div>
 							<div class="form-group">
 								<div class="row">
@@ -63,8 +61,8 @@ $(document).ready(function() {
     });
 
 	$('#pincode-input5').pincodeInput({hidedigits:false,inputs:4,placeholders:"0 0 0 0",change: function(input,value,inputnumber){
-            	$("#pincode-callback2").html("onchange from input number "+inputnumber+", current value: " + value);
-            }});
+		$("#pincode-callback2").html("onchange from input number "+inputnumber+", current value: " + value);
+	}});
 			
 });
 </script>

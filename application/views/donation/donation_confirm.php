@@ -12,8 +12,8 @@
 <div class="form-group">
 <div  style="background-color:#ececf9;">
 <div style="margin-left: 27px;">
-<p id="notice" style="font-size: 25px;">  Please Confirm your donation of<br> <strong>$</strong><?php //echo $_SESSION['amount'];
-?> to <strong><?php //echo comp_name; ?></strong></p>
+<p id="notice" style="font-size: 25px;">  Please Confirm your donation of<br> <strong>$</strong><?php echo $this->session->userdata('amount');
+?> to <strong><?php echo $settings->comp_name; ?></strong></p>
  <ul>
   <strong>
   <?php //$recurring_frequency =$_SESSION['recurring_frequency'];

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 28, 2017 at 06:23 PM
+-- Generation Time: Oct 30, 2017 at 04:40 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -67,6 +67,13 @@ CREATE TABLE `payment_profiles` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
+--
+-- Dumping data for table `payment_profiles`
+--
+
+INSERT INTO `payment_profiles` (`id`, `user_id`, `payment_id`, `card_type`, `card_number`, `created_at`, `updated_at`) VALUES
+(2, 1, '1502219752', 'Visa', '1111', '2017-10-30 19:04:37', '2017-10-30 14:04:37');
+
 -- --------------------------------------------------------
 
 --
@@ -90,7 +97,9 @@ CREATE TABLE `receipts` (
 INSERT INTO `receipts` (`id`, `user_id`, `payment_id`, `txid`, `amount`, `recurring`, `donated_at`) VALUES
 (2, 1, '1523427676', '40366651767', '2.00', NULL, '2017-10-15 22:30:23'),
 (3, 1, '1523427676', '40367576265', '1.00', NULL, '2017-10-16 11:26:16'),
-(4, 1, '1523427676', '40368644868', '1.00', NULL, '2017-10-16 18:47:12');
+(4, 1, '1523427676', '40368644868', '1.00', NULL, '2017-10-16 18:47:12'),
+(5, 1, '1502219752', '40008019023', '5.00', NULL, '2017-10-30 20:00:45'),
+(6, 1, '1502219752', '40008019198', '5.00', NULL, '2017-10-30 20:07:55');
 
 -- --------------------------------------------------------
 
@@ -100,19 +109,19 @@ INSERT INTO `receipts` (`id`, `user_id`, `payment_id`, `txid`, `amount`, `recurr
 
 CREATE TABLE `settings` (
   `id` int(11) NOT NULL,
-  `sender_number` varchar(30) CHARACTER SET latin1 NOT NULL,
-  `SMS_url` varchar(255) CHARACTER SET latin1 NOT NULL,
-  `SMS_user` varchar(30) CHARACTER SET latin1 NOT NULL,
-  `SMS_password` varchar(50) CHARACTER SET latin1 NOT NULL,
-  `MERCHANT_LOGIN_ID` varchar(40) CHARACTER SET latin1 NOT NULL,
-  `MERCHANT_TRANSACTION_KEY` varchar(40) CHARACTER SET latin1 NOT NULL,
-  `RESPONSE_OK` varchar(40) CHARACTER SET latin1 NOT NULL,
-  `SUBSCRIPTION_ID_GET` varchar(40) CHARACTER SET latin1 NOT NULL,
-  `TRANS_ID` varchar(40) CHARACTER SET latin1 NOT NULL,
+  `sender_number` varchar(30) NOT NULL,
+  `SMS_url` varchar(255) NOT NULL,
+  `SMS_user` varchar(255) NOT NULL,
+  `SMS_password` varchar(255) NOT NULL,
+  `MERCHANT_LOGIN_ID` varchar(40) NOT NULL,
+  `MERCHANT_TRANSACTION_KEY` varchar(40) NOT NULL,
+  `RESPONSE_OK` varchar(40) NOT NULL,
+  `SUBSCRIPTION_ID_GET` varchar(40) NOT NULL,
+  `TRANS_ID` varchar(40) NOT NULL,
   `SAMPLE_AMOUNT` float NOT NULL,
-  `comp_name` varchar(30) CHARACTER SET latin1 NOT NULL,
-  `comp_address` varchar(255) CHARACTER SET latin1 NOT NULL,
-  `comp_phone` varchar(30) CHARACTER SET latin1 NOT NULL
+  `comp_name` varchar(30) NOT NULL,
+  `comp_address` varchar(255) NOT NULL,
+  `comp_phone` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 --
@@ -131,9 +140,9 @@ INSERT INTO `settings` (`id`, `sender_number`, `SMS_url`, `SMS_user`, `SMS_passw
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `phone_num` varchar(25) CHARACTER SET latin1 NOT NULL,
-  `email` varchar(30) CHARACTER SET latin1 NOT NULL,
-  `verify` varchar(32) CHARACTER SET latin1 NOT NULL,
-  `password` varchar(32) CHARACTER SET latin1 NOT NULL,
+  `email` varchar(255) CHARACTER SET latin1 NOT NULL,
+  `verify` varchar(255) CHARACTER SET latin1 NOT NULL,
+  `password` varchar(255) CHARACTER SET latin1 NOT NULL,
   `firstname` varchar(255) CHARACTER SET latin1 NOT NULL,
   `lastname` varchar(255) CHARACTER SET latin1 NOT NULL,
   `mobile` varchar(255) CHARACTER SET latin1 NOT NULL,
@@ -151,7 +160,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `phone_num`, `email`, `verify`, `password`, `firstname`, `lastname`, `mobile`, `address`, `city`, `state`, `zip`, `profileid`, `created_at`, `updated_at`) VALUES
-(3, '1-234-567-89', 'aliraza@gmail.com', '', '$2y$10$zdGgf1CTKLRUQTLvgohNAO8Q8', 'Ali', 'Raza', '1-234-567-89', 'Houston', 'Houston', 'Texas', '12345', '1502673012', '0000-00-00 00:00:00', '2017-10-27 21:13:02');
+(1, '1-234-567-89', 'aliraza@gmail.com', '', '$2y$10$SliB7FPLIo72mUA2xexK0.bz4ArvQmzK6uMXhQWp2N4O0RgMAn29i', 'Ali', 'Raza', '1-234-567-89', 'Houston', 'Houston', 'Texas', '12345', '1502673012', '0000-00-00 00:00:00', '2017-10-29 07:46:56');
 
 --
 -- Indexes for dumped tables
@@ -200,12 +209,12 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `payment_profiles`
 --
 ALTER TABLE `payment_profiles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `receipts`
 --
 ALTER TABLE `receipts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `settings`
 --
@@ -215,7 +224,7 @@ ALTER TABLE `settings`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

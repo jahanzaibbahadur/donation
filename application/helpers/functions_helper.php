@@ -1,5 +1,14 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+if( !function_exists('get_settings') ){
+    function get_settings(){
+		$CI =& get_instance();
+		
+		$CI->load->model('admin_model');
+		return $CI->admin_model->get_settings();
+	}
+}
+
 if( !function_exists('account') ){
     function account(){
         global $CI;

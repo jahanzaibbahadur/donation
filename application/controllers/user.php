@@ -8,6 +8,7 @@ class User extends CI_Controller {
 		$this->load->library('authorize');
 		$this->load->helper('auth_helper');
 		$this->load->model('user_model');
+		$this->load->model('donation_model');
 	}
 	
 	private function is_register() {
@@ -62,6 +63,13 @@ class User extends CI_Controller {
 				exit;
 			}
 			
+			if($this->input->post('amount')) {
+				$this->session->set_userdata('amount', $this->input->post('amount'));
+				if($this->input->post('recurring_frequency')) {
+					$this->session->set_userdata('recurring_frequency', $this->input->post('recurring_frequency'));
+				}
+			}
+			
 			if($this->input->post('action') == 'profile' && $this->session->userdata('update_profile') == 'update') {
 				$config = array(
 								array(
@@ -112,18 +120,15 @@ class User extends CI_Controller {
 				if($this->form_validation->run()==true){
 					$this->user_model->update_user();
 					$user = $this->user_model->get_user();
-					$setting=$this->user_model->get_setting();
 					
 					$authorize = new Authorize();
-					$response = $authorize->CreateCustomerProfile($user,$setting);
 					
 					if($payment_profiles_count > 0){
 						$payment_profiles = $this->user_model->get_payment_profiles();
 						foreach($payment_profiles as $profile) {
-							$authorize->updateCustomerPaymentProfile($user,$profile,$setting);
+							$authorize->updateCustomerPaymentProfile($user, $profile);
 						}
 					}
-					
 					
 					$response['url'] = '/';
 					
@@ -189,10 +194,9 @@ class User extends CI_Controller {
 					if($this->form_validation->run()==true){
 						$this->user_model->update_user();
 						$user = $this->user_model->get_user();
-						$setting=$this->user_model->get_setting();
 						
 						$authorize = new Authorize();
-						$response = $authorize->CreateCustomerProfile($user,$setting);
+						$response = $authorize->createCustomerProfile($user);
 						
 						if($response['status'] == 'success') {
 							$this->user_model->update_profile_id($response['profile_id']);
@@ -223,48 +227,129 @@ class User extends CI_Controller {
 		$this->load->view('donation/layout', $data);
 	}
 	
-	public function update_profile()
-	{
-		$a = new Authorize();	
-		
-		$payment_profiles_count = $this->user_model->get_payment_profiles_count();
-		if($payment_profiles_count > 0){
-			$payment_profiles = $this->user_model->get_payment_profiles();
-			foreach($payment_profiles as $profile) {
-				$a->updateCustomerPaymentProfile($user,$profile,$setting);
-			}
-		}
-	}
 	function my_donation_confirm()
 	{
-		$data['payment_profiles']=$this->user_model->get_payment_profiles();	
-		$data['setting']=$this->user_model->get_setting();
-		$data['content'] = 'donation/my_donation_confirm';
-		$this->load->view('donation/layout', $data);
-	}
-	function charge_donation()
-	{	$card_details=$this->input->post();
-		$a = new Authorize();
-		$user=$this->user_model->get_user();
-		$setting=$this->user_model->get_setting();
-		$payment_profiles_count =$this->user_model->get_payment_profiles_count();
-		$charge_type = $card_details['card_type'];
-	if($payment_profiles_count > 0 && $charge_type == 'existing') {
-		$payment_id = $this->input->post('payment_profile');
+		if($this->input->method() == 'post' && $this->input->post('action') == 'change_donation') {
+			$this->session->unset_userdata('amount');
+			$this->session->unset_userdata('recurring_frequency');
+			echo json_encode(array('status'=>true, 'msg' => 'Success'));
+			exit;
+		}
 		
-		$a->charge_card($user, $payment_id,$user, $setting);
-	} else { 
-		$response = $a->createCustomerPaymentProfile($user,$card_details,$setting);
-		if($response['status']){
-			charge_card($user, $response['payment_id'],$user, $setting);
+		if($this->input->method() == 'post' && $this->input->post('action') == 'charge') {
+			
+			$card_details = $this->input->post();
+			$authorize = new Authorize();
+			$user = $this->user_model->get_user();
+			$payment_profiles = $this->user_model->get_payment_profiles();
+			$charge_type = $card_details['card_type'];
+			$card_number = $card_details['card_number'];
+			
+			
+			if($this->session->has_userdata('recurring_frequency')) {
+				
+				$recurring_frequency = $this->session->userdata('recurring_frequency');
+				
+				if($recurring_frequency == 'monthly'){
+					$intervalLength = 1;
+				}else if($recurring_frequency == 'quarterly'){
+					$intervalLength = 3;
+				}else if($recurring_frequency == 'yearly'){
+					$intervalLength = 12;
+				}else{
+					$intervalLength = 0;
+				}
+			} else {
+				$intervalLength = 0;
+			}
+			
+			$payment_details = ['amount' => $this->session->userdata('amount'), 'recurring_frequency' => $intervalLength];
+		
+			if(count($payment_profiles) > 0 && $charge_type == 'existing') {
+				$payment_id = $this->input->post('payment_profile');
+				$payment_details['payment_id'] = $payment_id;
+				
+				$response = $authorize->charge_card($user, $payment_details);
+			} else { 
+				$response = $authorize->createCustomerPaymentProfile($user,$card_details);
+				
+				$payment_id = $response['payment_id'];
+				
+				if($response['status'] == 'success') {
+					$card_type = get_card_type($card_number);
+					$cc_number = substr($card_number, -4);
+					$profile = array(
+									'user_id' => $this->session->userdata('user')['id'],
+									'payment_id' => $payment_id,
+									'card_type' => $card_type,
+									'card_number' => $cc_number
+								);
+								
+					if($this->user_model->insert_payment_profile($profile)) {
+						$response = $authorize->charge_card($user, $payment_details);
+					}
+				}
+			}
+			
+			if($response['status'] == 'success') {
+				$receipt_data = array(
+									'user_id' => $this->session->userdata('user')['id'],
+									'payment_id' => $payment_id,
+									'txid' => $response['trans_id'],
+									'amount' => $this->session->userdata('amount')
+								);
+			
+				$receipt_id = $this->user_model->insert_receipt($receipt_data);
+				$receipt = $this->donation_model->get_receipt($receipt_id);
+				$settings = get_settings();
+				$receipt_html = $this->load->view('donation/receipt', ['user' => $user, 'receipt' => $receipt, 'settings' => $settings]);
+				
+				$email= $user->email;
+				
+				//$config['protocol'] = 'sendmail';
+				//$config['mailpath'] = '/usr/sbin/sendmail';
+				$config['charset'] = 'iso-8859-1';
+				$config['mailtype'] = 'html',
+				$config['wordwrap'] = TRUE;
+
+				$this->email->initialize($config);
+				
+				$this->email->set_header('MIME-Version', '1.0; charset=utf-8');
+				$this->email->set_header('Content-type', 'text/html');
+				
+				$this->email->to($email);
+				$this->email->from('noreply@donatetogo.com', $settings->comp_name);
+				$this->email->subject('Donation Receipt');
+				$this->email->message($receipt_html);
+				//$this->email->set_mailtype('html');
+				$this->email->send();
+
+			}
+			$this->session->unset_userdata('amount');
+			$this->session->set_userdata('donation','success');
+			echo json_encode($response);
+			exit;
+		}
+		
+		if($this->session->has_userdata('amount') && $this->session->userdata('amount') > 0) {
+			$data['settings'] = get_settings();
+			$data['payment_profiles']=$this->user_model->get_payment_profiles();
+			$data['content'] = 'donation/my_donation_confirm';
+			$this->load->view('donation/layout', $data);
+		} else {
+			redirect('/');
 		}
 	}
-	}
+	
 	public function thankyou()
 	{
-		$data['content'] = 'donation/thankyou';
-		
-		$this->load->view('donation/layoutd', $data);
+		if($this->session->has_userdata('donation')) {
+			$this->session->unset_userdata('donation');
+			$data['content'] = 'donation/thankyou';
+			$this->load->view('donation/layout', $data);
+		} else {
+			redirect('/');
+		}
 	}
 	
 	public function login()
