@@ -1405,3 +1405,557 @@
  Mon, 30 Oct 2017 16:07:55 +0100 INFO : [_sendRequest] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\util\HttpClient.php : 96) - Response from AnetApi: ﻿<?xml version="1.0" encoding="utf-8"?><createTransactionResponse xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="AnetApi/xml/v1/schema/AnetApiSchema.xsd"><refId>ref1509376071</refId><messages><resultCode>Ok</resultCode><message><code>I00001</code><text>Successful.</text></message></messages><transactionResponse><responseCode>1</responseCode><authCode>YL3LE2</authCode><avsResultCode>Y</avsResultCode><cvvResultCode>P</cvvResultCode><cavvResultCode>2</cavvResultCode><transId>40008019198</transId><refTransID /><transHash>2C70C4399856C69F81EC9A95369C517E</transHash><testRequest>0</testRequest><accountNumber>XXXX1111</accountNumber><accountType>Visa</accountType><messages><message><code>1</code><description>This transaction has been approved.</description></message></messages><transHashSha2 /><profile><customerProfileId>1502673012</customerProfileId><customerPaymentProfileId>1502219752</customerPaymentProfileId></profile></transactionResponse></createTransactionResponse>
  Mon, 30 Oct 2017 16:07:55 +0100 INFO : [execute] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\api\controller\base\ApiOperationBase.php : 128) - Response De-Serialization Begin
  Mon, 30 Oct 2017 16:07:55 +0100 INFO : [execute] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\api\controller\base\ApiOperationBase.php : 130) - Response De-Serialization End
+ Mon, 30 Oct 2017 17:49:36 +0100 INFO : [execute] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\api\controller\base\ApiOperationBase.php : 114) - Request Serialization Begin
+ Mon, 30 Oct 2017 17:49:36 +0100 DEBUG : [execute] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\api\controller\base\ApiOperationBase.php : 115) - net\authorize\api\contract\v1\ARBCreateSubscriptionRequest Object
+(
+    [subscription:net\authorize\api\contract\v1\ARBCreateSubscriptionRequest:private] => net\authorize\api\contract\v1\ARBSubscriptionType Object
+        (
+            [name:net\authorize\api\contract\v1\ARBSubscriptionType:private] => Hilal Tech Membership Subscription
+            [paymentSchedule:net\authorize\api\contract\v1\ARBSubscriptionType:private] => net\authorize\api\contract\v1\PaymentScheduleType Object
+                (
+                    [interval:net\authorize\api\contract\v1\PaymentScheduleType:private] => net\authorize\api\contract\v1\PaymentScheduleType\IntervalAType Object
+                        (
+                            [length:net\authorize\api\contract\v1\PaymentScheduleType\IntervalAType:private] => 
+                            [unit:net\authorize\api\contract\v1\PaymentScheduleType\IntervalAType:private] => months
+                        )
+
+                    [startDate:net\authorize\api\contract\v1\PaymentScheduleType:private] => DateTime Object
+                        (
+                            [date] => 2017-10-30 17:49:34.000000
+                            [timezone_type] => 3
+                            [timezone] => Europe/Berlin
+                        )
+
+                    [totalOccurrences:net\authorize\api\contract\v1\PaymentScheduleType:private] => 12
+                    [trialOccurrences:net\authorize\api\contract\v1\PaymentScheduleType:private] => 
+                )
+
+            [amount:net\authorize\api\contract\v1\ARBSubscriptionType:private] => 5.00
+            [trialAmount:net\authorize\api\contract\v1\ARBSubscriptionType:private] => 
+            [payment:net\authorize\api\contract\v1\ARBSubscriptionType:private] => 
+            [order:net\authorize\api\contract\v1\ARBSubscriptionType:private] => 
+            [customer:net\authorize\api\contract\v1\ARBSubscriptionType:private] => 
+            [billTo:net\authorize\api\contract\v1\ARBSubscriptionType:private] => 
+            [shipTo:net\authorize\api\contract\v1\ARBSubscriptionType:private] => 
+            [profile:net\authorize\api\contract\v1\ARBSubscriptionType:private] => net\authorize\api\contract\v1\CustomerProfileIdType Object
+                (
+                    [customerProfileId:net\authorize\api\contract\v1\CustomerProfileIdType:private] => 1502673012
+                    [customerPaymentProfileId:net\authorize\api\contract\v1\CustomerProfileIdType:private] => 1502219752
+                    [customerAddressId:net\authorize\api\contract\v1\CustomerProfileIdType:private] => 
+                )
+
+        )
+
+    [merchantAuthentication:net\authorize\api\contract\v1\ANetApiRequestType:private] => net\authorize\api\contract\v1\MerchantAuthenticationType Object
+        (
+            [name:net\authorize\api\contract\v1\MerchantAuthenticationType:private] => 66BB6xppD8qM
+            [transactionKey:net\authorize\api\contract\v1\MerchantAuthenticationType:private] => xxxx
+            [sessionToken:net\authorize\api\contract\v1\MerchantAuthenticationType:private] => 
+            [password:net\authorize\api\contract\v1\MerchantAuthenticationType:private] => 
+            [impersonationAuthentication:net\authorize\api\contract\v1\MerchantAuthenticationType:private] => 
+            [fingerPrint:net\authorize\api\contract\v1\MerchantAuthenticationType:private] => 
+            [clientKey:net\authorize\api\contract\v1\MerchantAuthenticationType:private] => 
+            [mobileDeviceId:net\authorize\api\contract\v1\MerchantAuthenticationType:private] => 
+        )
+
+    [clientId:net\authorize\api\contract\v1\ANetApiRequestType:private] => sdk-php-1.9.3
+    [refId:net\authorize\api\contract\v1\ANetApiRequestType:private] => ref1509382174
+)
+
+ Mon, 30 Oct 2017 17:49:36 +0100 INFO : [execute] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\api\controller\base\ApiOperationBase.php : 118) - Request  Serialization End
+ Mon, 30 Oct 2017 17:49:36 +0100 INFO : [_sendRequest] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\util\HttpClient.php : 75) -  Url: https://apitest.authorize.net/xml/v1/request.api
+ Mon, 30 Oct 2017 17:49:36 +0100 INFO : [_sendRequest] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\util\HttpClient.php : 77) - Request to AnetApi: 
+<?xml version="1.0" encoding="UTF-8"?>
+<ARBCreateSubscriptionRequest xmlns="AnetApi/xml/v1/schema/AnetApiSchema.xsd">
+  <merchantAuthentication>
+    <name><![CDATA[66BB6xppD8qM]]></name>
+    <transactionKey>xxxx</transactionKey>
+  </merchantAuthentication>
+  <clientId><![CDATA[sdk-php-1.9.3]]></clientId>
+  <refId><![CDATA[ref1509382174]]></refId>
+  <subscription>
+    <name><![CDATA[Hilal Tech Membership Subscription]]></name>
+    <paymentSchedule>
+      <interval>
+        <unit><![CDATA[months]]></unit>
+      </interval>
+      <startDate><![CDATA[2017-10-30]]></startDate>
+      <totalOccurrences>12</totalOccurrences>
+    </paymentSchedule>
+    <amount>5.00</amount>
+    <profile>
+      <customerProfileId><![CDATA[1502673012]]></customerProfileId>
+      <customerPaymentProfileId><![CDATA[1502219752]]></customerPaymentProfileId>
+    </profile>
+  </subscription>
+</ARBCreateSubscriptionRequest>
+
+ Mon, 30 Oct 2017 17:49:36 +0100 INFO : [_sendRequest] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\util\HttpClient.php : 89) - Sending 'XML' Request type
+ Mon, 30 Oct 2017 17:49:36 +0100 INFO : [_sendRequest] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\util\HttpClient.php : 94) - Sending http request via Curl
+ Mon, 30 Oct 2017 17:49:40 +0100 INFO : [_sendRequest] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\util\HttpClient.php : 96) - Response from AnetApi: ﻿<?xml version="1.0" encoding="utf-8"?><ErrorResponse xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="AnetApi/xml/v1/schema/AnetApiSchema.xsd"><messages><resultCode>Error</resultCode><message><code>E00003</code><text>The element 'interval' in namespace 'AnetApi/xml/v1/schema/AnetApiSchema.xsd' has invalid child element 'unit' in namespace 'AnetApi/xml/v1/schema/AnetApiSchema.xsd'. List of possible elements expected: 'length' in namespace 'AnetApi/xml/v1/schema/AnetApiSchema.xsd'.</text></message></messages></ErrorResponse>
+ Mon, 30 Oct 2017 17:49:40 +0100 INFO : [execute] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\api\controller\base\ApiOperationBase.php : 128) - Response De-Serialization Begin
+ Mon, 30 Oct 2017 17:49:40 +0100 INFO : [execute] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\api\controller\base\ApiOperationBase.php : 130) - Response De-Serialization End
+ Mon, 30 Oct 2017 17:50:56 +0100 INFO : [execute] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\api\controller\base\ApiOperationBase.php : 114) - Request Serialization Begin
+ Mon, 30 Oct 2017 17:50:56 +0100 DEBUG : [execute] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\api\controller\base\ApiOperationBase.php : 115) - net\authorize\api\contract\v1\ARBCreateSubscriptionRequest Object
+(
+    [subscription:net\authorize\api\contract\v1\ARBCreateSubscriptionRequest:private] => net\authorize\api\contract\v1\ARBSubscriptionType Object
+        (
+            [name:net\authorize\api\contract\v1\ARBSubscriptionType:private] => Hilal Tech Membership Subscription
+            [paymentSchedule:net\authorize\api\contract\v1\ARBSubscriptionType:private] => net\authorize\api\contract\v1\PaymentScheduleType Object
+                (
+                    [interval:net\authorize\api\contract\v1\PaymentScheduleType:private] => net\authorize\api\contract\v1\PaymentScheduleType\IntervalAType Object
+                        (
+                            [length:net\authorize\api\contract\v1\PaymentScheduleType\IntervalAType:private] => 1
+                            [unit:net\authorize\api\contract\v1\PaymentScheduleType\IntervalAType:private] => months
+                        )
+
+                    [startDate:net\authorize\api\contract\v1\PaymentScheduleType:private] => DateTime Object
+                        (
+                            [date] => 2017-10-30 17:50:56.000000
+                            [timezone_type] => 3
+                            [timezone] => Europe/Berlin
+                        )
+
+                    [totalOccurrences:net\authorize\api\contract\v1\PaymentScheduleType:private] => 12
+                    [trialOccurrences:net\authorize\api\contract\v1\PaymentScheduleType:private] => 
+                )
+
+            [amount:net\authorize\api\contract\v1\ARBSubscriptionType:private] => 25.00
+            [trialAmount:net\authorize\api\contract\v1\ARBSubscriptionType:private] => 
+            [payment:net\authorize\api\contract\v1\ARBSubscriptionType:private] => 
+            [order:net\authorize\api\contract\v1\ARBSubscriptionType:private] => 
+            [customer:net\authorize\api\contract\v1\ARBSubscriptionType:private] => 
+            [billTo:net\authorize\api\contract\v1\ARBSubscriptionType:private] => 
+            [shipTo:net\authorize\api\contract\v1\ARBSubscriptionType:private] => 
+            [profile:net\authorize\api\contract\v1\ARBSubscriptionType:private] => net\authorize\api\contract\v1\CustomerProfileIdType Object
+                (
+                    [customerProfileId:net\authorize\api\contract\v1\CustomerProfileIdType:private] => 1502673012
+                    [customerPaymentProfileId:net\authorize\api\contract\v1\CustomerProfileIdType:private] => 1502219752
+                    [customerAddressId:net\authorize\api\contract\v1\CustomerProfileIdType:private] => 
+                )
+
+        )
+
+    [merchantAuthentication:net\authorize\api\contract\v1\ANetApiRequestType:private] => net\authorize\api\contract\v1\MerchantAuthenticationType Object
+        (
+            [name:net\authorize\api\contract\v1\MerchantAuthenticationType:private] => 66BB6xppD8qM
+            [transactionKey:net\authorize\api\contract\v1\MerchantAuthenticationType:private] => xxxx
+            [sessionToken:net\authorize\api\contract\v1\MerchantAuthenticationType:private] => 
+            [password:net\authorize\api\contract\v1\MerchantAuthenticationType:private] => 
+            [impersonationAuthentication:net\authorize\api\contract\v1\MerchantAuthenticationType:private] => 
+            [fingerPrint:net\authorize\api\contract\v1\MerchantAuthenticationType:private] => 
+            [clientKey:net\authorize\api\contract\v1\MerchantAuthenticationType:private] => 
+            [mobileDeviceId:net\authorize\api\contract\v1\MerchantAuthenticationType:private] => 
+        )
+
+    [clientId:net\authorize\api\contract\v1\ANetApiRequestType:private] => sdk-php-1.9.3
+    [refId:net\authorize\api\contract\v1\ANetApiRequestType:private] => ref1509382256
+)
+
+ Mon, 30 Oct 2017 17:50:56 +0100 INFO : [execute] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\api\controller\base\ApiOperationBase.php : 118) - Request  Serialization End
+ Mon, 30 Oct 2017 17:50:56 +0100 INFO : [_sendRequest] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\util\HttpClient.php : 75) -  Url: https://apitest.authorize.net/xml/v1/request.api
+ Mon, 30 Oct 2017 17:50:56 +0100 INFO : [_sendRequest] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\util\HttpClient.php : 77) - Request to AnetApi: 
+<?xml version="1.0" encoding="UTF-8"?>
+<ARBCreateSubscriptionRequest xmlns="AnetApi/xml/v1/schema/AnetApiSchema.xsd">
+  <merchantAuthentication>
+    <name><![CDATA[66BB6xppD8qM]]></name>
+    <transactionKey>xxxx</transactionKey>
+  </merchantAuthentication>
+  <clientId><![CDATA[sdk-php-1.9.3]]></clientId>
+  <refId><![CDATA[ref1509382256]]></refId>
+  <subscription>
+    <name><![CDATA[Hilal Tech Membership Subscription]]></name>
+    <paymentSchedule>
+      <interval>
+        <length>1</length>
+        <unit><![CDATA[months]]></unit>
+      </interval>
+      <startDate><![CDATA[2017-10-30]]></startDate>
+      <totalOccurrences>12</totalOccurrences>
+    </paymentSchedule>
+    <amount>25.00</amount>
+    <profile>
+      <customerProfileId><![CDATA[1502673012]]></customerProfileId>
+      <customerPaymentProfileId><![CDATA[1502219752]]></customerPaymentProfileId>
+    </profile>
+  </subscription>
+</ARBCreateSubscriptionRequest>
+
+ Mon, 30 Oct 2017 17:50:56 +0100 INFO : [_sendRequest] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\util\HttpClient.php : 89) - Sending 'XML' Request type
+ Mon, 30 Oct 2017 17:50:56 +0100 INFO : [_sendRequest] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\util\HttpClient.php : 94) - Sending http request via Curl
+ Mon, 30 Oct 2017 17:50:58 +0100 INFO : [_sendRequest] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\util\HttpClient.php : 96) - Response from AnetApi: ﻿<?xml version="1.0" encoding="utf-8"?><ARBCreateSubscriptionResponse xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="AnetApi/xml/v1/schema/AnetApiSchema.xsd"><refId>ref1509382256</refId><messages><resultCode>Ok</resultCode><message><code>I00001</code><text>Successful.</text></message></messages><subscriptionId>4802981</subscriptionId><profile><customerProfileId>1502673012</customerProfileId><customerPaymentProfileId>1502219752</customerPaymentProfileId></profile></ARBCreateSubscriptionResponse>
+ Mon, 30 Oct 2017 17:50:58 +0100 INFO : [execute] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\api\controller\base\ApiOperationBase.php : 128) - Response De-Serialization Begin
+ Mon, 30 Oct 2017 17:50:58 +0100 INFO : [execute] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\api\controller\base\ApiOperationBase.php : 130) - Response De-Serialization End
+ Mon, 30 Oct 2017 17:52:46 +0100 INFO : [execute] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\api\controller\base\ApiOperationBase.php : 114) - Request Serialization Begin
+ Mon, 30 Oct 2017 17:52:46 +0100 DEBUG : [execute] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\api\controller\base\ApiOperationBase.php : 115) - net\authorize\api\contract\v1\ARBCreateSubscriptionRequest Object
+(
+    [subscription:net\authorize\api\contract\v1\ARBCreateSubscriptionRequest:private] => net\authorize\api\contract\v1\ARBSubscriptionType Object
+        (
+            [name:net\authorize\api\contract\v1\ARBSubscriptionType:private] => Hilal Tech Membership Subscription
+            [paymentSchedule:net\authorize\api\contract\v1\ARBSubscriptionType:private] => net\authorize\api\contract\v1\PaymentScheduleType Object
+                (
+                    [interval:net\authorize\api\contract\v1\PaymentScheduleType:private] => net\authorize\api\contract\v1\PaymentScheduleType\IntervalAType Object
+                        (
+                            [length:net\authorize\api\contract\v1\PaymentScheduleType\IntervalAType:private] => 1
+                            [unit:net\authorize\api\contract\v1\PaymentScheduleType\IntervalAType:private] => months
+                        )
+
+                    [startDate:net\authorize\api\contract\v1\PaymentScheduleType:private] => DateTime Object
+                        (
+                            [date] => 2017-10-30 17:52:45.000000
+                            [timezone_type] => 3
+                            [timezone] => Europe/Berlin
+                        )
+
+                    [totalOccurrences:net\authorize\api\contract\v1\PaymentScheduleType:private] => 12
+                    [trialOccurrences:net\authorize\api\contract\v1\PaymentScheduleType:private] => 
+                )
+
+            [amount:net\authorize\api\contract\v1\ARBSubscriptionType:private] => 5.00
+            [trialAmount:net\authorize\api\contract\v1\ARBSubscriptionType:private] => 
+            [payment:net\authorize\api\contract\v1\ARBSubscriptionType:private] => 
+            [order:net\authorize\api\contract\v1\ARBSubscriptionType:private] => 
+            [customer:net\authorize\api\contract\v1\ARBSubscriptionType:private] => 
+            [billTo:net\authorize\api\contract\v1\ARBSubscriptionType:private] => 
+            [shipTo:net\authorize\api\contract\v1\ARBSubscriptionType:private] => 
+            [profile:net\authorize\api\contract\v1\ARBSubscriptionType:private] => net\authorize\api\contract\v1\CustomerProfileIdType Object
+                (
+                    [customerProfileId:net\authorize\api\contract\v1\CustomerProfileIdType:private] => 1502673012
+                    [customerPaymentProfileId:net\authorize\api\contract\v1\CustomerProfileIdType:private] => 1502219752
+                    [customerAddressId:net\authorize\api\contract\v1\CustomerProfileIdType:private] => 
+                )
+
+        )
+
+    [merchantAuthentication:net\authorize\api\contract\v1\ANetApiRequestType:private] => net\authorize\api\contract\v1\MerchantAuthenticationType Object
+        (
+            [name:net\authorize\api\contract\v1\MerchantAuthenticationType:private] => 66BB6xppD8qM
+            [transactionKey:net\authorize\api\contract\v1\MerchantAuthenticationType:private] => xxxx
+            [sessionToken:net\authorize\api\contract\v1\MerchantAuthenticationType:private] => 
+            [password:net\authorize\api\contract\v1\MerchantAuthenticationType:private] => 
+            [impersonationAuthentication:net\authorize\api\contract\v1\MerchantAuthenticationType:private] => 
+            [fingerPrint:net\authorize\api\contract\v1\MerchantAuthenticationType:private] => 
+            [clientKey:net\authorize\api\contract\v1\MerchantAuthenticationType:private] => 
+            [mobileDeviceId:net\authorize\api\contract\v1\MerchantAuthenticationType:private] => 
+        )
+
+    [clientId:net\authorize\api\contract\v1\ANetApiRequestType:private] => sdk-php-1.9.3
+    [refId:net\authorize\api\contract\v1\ANetApiRequestType:private] => ref1509382365
+)
+
+ Mon, 30 Oct 2017 17:52:46 +0100 INFO : [execute] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\api\controller\base\ApiOperationBase.php : 118) - Request  Serialization End
+ Mon, 30 Oct 2017 17:52:46 +0100 INFO : [_sendRequest] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\util\HttpClient.php : 75) -  Url: https://apitest.authorize.net/xml/v1/request.api
+ Mon, 30 Oct 2017 17:52:46 +0100 INFO : [_sendRequest] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\util\HttpClient.php : 77) - Request to AnetApi: 
+<?xml version="1.0" encoding="UTF-8"?>
+<ARBCreateSubscriptionRequest xmlns="AnetApi/xml/v1/schema/AnetApiSchema.xsd">
+  <merchantAuthentication>
+    <name><![CDATA[66BB6xppD8qM]]></name>
+    <transactionKey>xxxx</transactionKey>
+  </merchantAuthentication>
+  <clientId><![CDATA[sdk-php-1.9.3]]></clientId>
+  <refId><![CDATA[ref1509382365]]></refId>
+  <subscription>
+    <name><![CDATA[Hilal Tech Membership Subscription]]></name>
+    <paymentSchedule>
+      <interval>
+        <length>1</length>
+        <unit><![CDATA[months]]></unit>
+      </interval>
+      <startDate><![CDATA[2017-10-30]]></startDate>
+      <totalOccurrences>12</totalOccurrences>
+    </paymentSchedule>
+    <amount>5.00</amount>
+    <profile>
+      <customerProfileId><![CDATA[1502673012]]></customerProfileId>
+      <customerPaymentProfileId><![CDATA[1502219752]]></customerPaymentProfileId>
+    </profile>
+  </subscription>
+</ARBCreateSubscriptionRequest>
+
+ Mon, 30 Oct 2017 17:52:46 +0100 INFO : [_sendRequest] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\util\HttpClient.php : 89) - Sending 'XML' Request type
+ Mon, 30 Oct 2017 17:52:46 +0100 INFO : [_sendRequest] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\util\HttpClient.php : 94) - Sending http request via Curl
+ Mon, 30 Oct 2017 17:52:48 +0100 INFO : [_sendRequest] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\util\HttpClient.php : 96) - Response from AnetApi: ﻿<?xml version="1.0" encoding="utf-8"?><ARBCreateSubscriptionResponse xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="AnetApi/xml/v1/schema/AnetApiSchema.xsd"><refId>ref1509382365</refId><messages><resultCode>Ok</resultCode><message><code>I00001</code><text>Successful.</text></message></messages><subscriptionId>4802990</subscriptionId><profile><customerProfileId>1502673012</customerProfileId><customerPaymentProfileId>1502219752</customerPaymentProfileId></profile></ARBCreateSubscriptionResponse>
+ Mon, 30 Oct 2017 17:52:48 +0100 INFO : [execute] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\api\controller\base\ApiOperationBase.php : 128) - Response De-Serialization Begin
+ Mon, 30 Oct 2017 17:52:48 +0100 INFO : [execute] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\api\controller\base\ApiOperationBase.php : 130) - Response De-Serialization End
+ Mon, 30 Oct 2017 18:06:50 +0100 INFO : [execute] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\api\controller\base\ApiOperationBase.php : 114) - Request Serialization Begin
+ Mon, 30 Oct 2017 18:06:50 +0100 DEBUG : [execute] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\api\controller\base\ApiOperationBase.php : 115) - net\authorize\api\contract\v1\ARBCreateSubscriptionRequest Object
+(
+    [subscription:net\authorize\api\contract\v1\ARBCreateSubscriptionRequest:private] => net\authorize\api\contract\v1\ARBSubscriptionType Object
+        (
+            [name:net\authorize\api\contract\v1\ARBSubscriptionType:private] => Hilal Tech Membership Subscription
+            [paymentSchedule:net\authorize\api\contract\v1\ARBSubscriptionType:private] => net\authorize\api\contract\v1\PaymentScheduleType Object
+                (
+                    [interval:net\authorize\api\contract\v1\PaymentScheduleType:private] => net\authorize\api\contract\v1\PaymentScheduleType\IntervalAType Object
+                        (
+                            [length:net\authorize\api\contract\v1\PaymentScheduleType\IntervalAType:private] => 1
+                            [unit:net\authorize\api\contract\v1\PaymentScheduleType\IntervalAType:private] => months
+                        )
+
+                    [startDate:net\authorize\api\contract\v1\PaymentScheduleType:private] => DateTime Object
+                        (
+                            [date] => 2017-10-30 18:06:50.000000
+                            [timezone_type] => 3
+                            [timezone] => Europe/Berlin
+                        )
+
+                    [totalOccurrences:net\authorize\api\contract\v1\PaymentScheduleType:private] => 12
+                    [trialOccurrences:net\authorize\api\contract\v1\PaymentScheduleType:private] => 
+                )
+
+            [amount:net\authorize\api\contract\v1\ARBSubscriptionType:private] => 5.00
+            [trialAmount:net\authorize\api\contract\v1\ARBSubscriptionType:private] => 
+            [payment:net\authorize\api\contract\v1\ARBSubscriptionType:private] => 
+            [order:net\authorize\api\contract\v1\ARBSubscriptionType:private] => 
+            [customer:net\authorize\api\contract\v1\ARBSubscriptionType:private] => 
+            [billTo:net\authorize\api\contract\v1\ARBSubscriptionType:private] => 
+            [shipTo:net\authorize\api\contract\v1\ARBSubscriptionType:private] => 
+            [profile:net\authorize\api\contract\v1\ARBSubscriptionType:private] => net\authorize\api\contract\v1\CustomerProfileIdType Object
+                (
+                    [customerProfileId:net\authorize\api\contract\v1\CustomerProfileIdType:private] => 1502673012
+                    [customerPaymentProfileId:net\authorize\api\contract\v1\CustomerProfileIdType:private] => 1502219752
+                    [customerAddressId:net\authorize\api\contract\v1\CustomerProfileIdType:private] => 
+                )
+
+        )
+
+    [merchantAuthentication:net\authorize\api\contract\v1\ANetApiRequestType:private] => net\authorize\api\contract\v1\MerchantAuthenticationType Object
+        (
+            [name:net\authorize\api\contract\v1\MerchantAuthenticationType:private] => 66BB6xppD8qM
+            [transactionKey:net\authorize\api\contract\v1\MerchantAuthenticationType:private] => xxxx
+            [sessionToken:net\authorize\api\contract\v1\MerchantAuthenticationType:private] => 
+            [password:net\authorize\api\contract\v1\MerchantAuthenticationType:private] => 
+            [impersonationAuthentication:net\authorize\api\contract\v1\MerchantAuthenticationType:private] => 
+            [fingerPrint:net\authorize\api\contract\v1\MerchantAuthenticationType:private] => 
+            [clientKey:net\authorize\api\contract\v1\MerchantAuthenticationType:private] => 
+            [mobileDeviceId:net\authorize\api\contract\v1\MerchantAuthenticationType:private] => 
+        )
+
+    [clientId:net\authorize\api\contract\v1\ANetApiRequestType:private] => sdk-php-1.9.3
+    [refId:net\authorize\api\contract\v1\ANetApiRequestType:private] => ref1509383210
+)
+
+ Mon, 30 Oct 2017 18:06:50 +0100 INFO : [execute] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\api\controller\base\ApiOperationBase.php : 118) - Request  Serialization End
+ Mon, 30 Oct 2017 18:06:50 +0100 INFO : [_sendRequest] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\util\HttpClient.php : 75) -  Url: https://apitest.authorize.net/xml/v1/request.api
+ Mon, 30 Oct 2017 18:06:50 +0100 INFO : [_sendRequest] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\util\HttpClient.php : 77) - Request to AnetApi: 
+<?xml version="1.0" encoding="UTF-8"?>
+<ARBCreateSubscriptionRequest xmlns="AnetApi/xml/v1/schema/AnetApiSchema.xsd">
+  <merchantAuthentication>
+    <name><![CDATA[66BB6xppD8qM]]></name>
+    <transactionKey>xxxx</transactionKey>
+  </merchantAuthentication>
+  <clientId><![CDATA[sdk-php-1.9.3]]></clientId>
+  <refId><![CDATA[ref1509383210]]></refId>
+  <subscription>
+    <name><![CDATA[Hilal Tech Membership Subscription]]></name>
+    <paymentSchedule>
+      <interval>
+        <length>1</length>
+        <unit><![CDATA[months]]></unit>
+      </interval>
+      <startDate><![CDATA[2017-10-30]]></startDate>
+      <totalOccurrences>12</totalOccurrences>
+    </paymentSchedule>
+    <amount>5.00</amount>
+    <profile>
+      <customerProfileId><![CDATA[1502673012]]></customerProfileId>
+      <customerPaymentProfileId><![CDATA[1502219752]]></customerPaymentProfileId>
+    </profile>
+  </subscription>
+</ARBCreateSubscriptionRequest>
+
+ Mon, 30 Oct 2017 18:06:50 +0100 INFO : [_sendRequest] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\util\HttpClient.php : 89) - Sending 'XML' Request type
+ Mon, 30 Oct 2017 18:06:50 +0100 INFO : [_sendRequest] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\util\HttpClient.php : 94) - Sending http request via Curl
+ Mon, 30 Oct 2017 18:06:53 +0100 INFO : [_sendRequest] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\util\HttpClient.php : 96) - Response from AnetApi: ﻿<?xml version="1.0" encoding="utf-8"?><ARBCreateSubscriptionResponse xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="AnetApi/xml/v1/schema/AnetApiSchema.xsd"><refId>ref1509383210</refId><messages><resultCode>Error</resultCode><message><code>E00012</code><text>You have submitted a duplicate of Subscription 4802990. A duplicate subscription will not be created.</text></message></messages></ARBCreateSubscriptionResponse>
+ Mon, 30 Oct 2017 18:06:53 +0100 INFO : [execute] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\api\controller\base\ApiOperationBase.php : 128) - Response De-Serialization Begin
+ Mon, 30 Oct 2017 18:06:53 +0100 INFO : [execute] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\api\controller\base\ApiOperationBase.php : 130) - Response De-Serialization End
+ Mon, 30 Oct 2017 18:19:19 +0100 INFO : [execute] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\api\controller\base\ApiOperationBase.php : 114) - Request Serialization Begin
+ Mon, 30 Oct 2017 18:19:19 +0100 DEBUG : [execute] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\api\controller\base\ApiOperationBase.php : 115) - net\authorize\api\contract\v1\CreateCustomerPaymentProfileRequest Object
+(
+    [customerProfileId:net\authorize\api\contract\v1\CreateCustomerPaymentProfileRequest:private] => 1502673012
+    [paymentProfile:net\authorize\api\contract\v1\CreateCustomerPaymentProfileRequest:private] => net\authorize\api\contract\v1\CustomerPaymentProfileType Object
+        (
+            [payment:net\authorize\api\contract\v1\CustomerPaymentProfileType:private] => net\authorize\api\contract\v1\PaymentType Object
+                (
+                    [creditCard:net\authorize\api\contract\v1\PaymentType:private] => net\authorize\api\contract\v1\CreditCardType Object
+                        (
+                            [cardCode:net\authorize\api\contract\v1\CreditCardType:private] => xxxx
+                            [isPaymentToken:net\authorize\api\contract\v1\CreditCardType:private] => 
+                            [cryptogram:net\authorize\api\contract\v1\CreditCardType:private] => 
+                            [cardNumber:net\authorize\api\contract\v1\CreditCardSimpleType:private] => xxxx-0002
+                            [expirationDate:net\authorize\api\contract\v1\CreditCardSimpleType:private] => xxxx
+                        )
+
+                    [bankAccount:net\authorize\api\contract\v1\PaymentType:private] => 
+                    [trackData:net\authorize\api\contract\v1\PaymentType:private] => 
+                    [encryptedTrackData:net\authorize\api\contract\v1\PaymentType:private] => 
+                    [payPal:net\authorize\api\contract\v1\PaymentType:private] => 
+                    [opaqueData:net\authorize\api\contract\v1\PaymentType:private] => 
+                    [emv:net\authorize\api\contract\v1\PaymentType:private] => 
+                )
+
+            [driversLicense:net\authorize\api\contract\v1\CustomerPaymentProfileType:private] => 
+            [taxId:net\authorize\api\contract\v1\CustomerPaymentProfileType:private] => 
+            [defaultPaymentProfile:net\authorize\api\contract\v1\CustomerPaymentProfileType:private] => 1
+            [customerType:net\authorize\api\contract\v1\CustomerPaymentProfileBaseType:private] => individual
+            [billTo:net\authorize\api\contract\v1\CustomerPaymentProfileBaseType:private] => net\authorize\api\contract\v1\CustomerAddressType Object
+                (
+                    [phoneNumber:net\authorize\api\contract\v1\CustomerAddressType:private] => 1-234-567-89
+                    [faxNumber:net\authorize\api\contract\v1\CustomerAddressType:private] => 
+                    [email:net\authorize\api\contract\v1\CustomerAddressType:private] => 
+                    [firstName:net\authorize\api\contract\v1\NameAndAddressType:private] => Ali
+                    [lastName:net\authorize\api\contract\v1\NameAndAddressType:private] => Raza
+                    [company:net\authorize\api\contract\v1\NameAndAddressType:private] => 
+                    [address:net\authorize\api\contract\v1\NameAndAddressType:private] => Houston
+                    [city:net\authorize\api\contract\v1\NameAndAddressType:private] => Houston
+                    [state:net\authorize\api\contract\v1\NameAndAddressType:private] => Texas
+                    [zip:net\authorize\api\contract\v1\NameAndAddressType:private] => 12345
+                    [country:net\authorize\api\contract\v1\NameAndAddressType:private] => USA
+                )
+
+        )
+
+    [validationMode:net\authorize\api\contract\v1\CreateCustomerPaymentProfileRequest:private] => liveMode
+    [merchantAuthentication:net\authorize\api\contract\v1\ANetApiRequestType:private] => net\authorize\api\contract\v1\MerchantAuthenticationType Object
+        (
+            [name:net\authorize\api\contract\v1\MerchantAuthenticationType:private] => 66BB6xppD8qM
+            [transactionKey:net\authorize\api\contract\v1\MerchantAuthenticationType:private] => xxxx
+            [sessionToken:net\authorize\api\contract\v1\MerchantAuthenticationType:private] => 
+            [password:net\authorize\api\contract\v1\MerchantAuthenticationType:private] => 
+            [impersonationAuthentication:net\authorize\api\contract\v1\MerchantAuthenticationType:private] => 
+            [fingerPrint:net\authorize\api\contract\v1\MerchantAuthenticationType:private] => 
+            [clientKey:net\authorize\api\contract\v1\MerchantAuthenticationType:private] => 
+            [mobileDeviceId:net\authorize\api\contract\v1\MerchantAuthenticationType:private] => 
+        )
+
+    [clientId:net\authorize\api\contract\v1\ANetApiRequestType:private] => sdk-php-1.9.3
+    [refId:net\authorize\api\contract\v1\ANetApiRequestType:private] => 
+)
+
+ Mon, 30 Oct 2017 18:19:19 +0100 INFO : [execute] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\api\controller\base\ApiOperationBase.php : 118) - Request  Serialization End
+ Mon, 30 Oct 2017 18:19:19 +0100 INFO : [_sendRequest] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\util\HttpClient.php : 75) -  Url: https://apitest.authorize.net/xml/v1/request.api
+ Mon, 30 Oct 2017 18:19:20 +0100 INFO : [_sendRequest] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\util\HttpClient.php : 77) - Request to AnetApi: 
+<?xml version="1.0" encoding="UTF-8"?>
+<createCustomerPaymentProfileRequest xmlns="AnetApi/xml/v1/schema/AnetApiSchema.xsd">
+  <merchantAuthentication>
+    <name><![CDATA[66BB6xppD8qM]]></name>
+    <transactionKey>xxxx</transactionKey>
+  </merchantAuthentication>
+  <clientId><![CDATA[sdk-php-1.9.3]]></clientId>
+  <customerProfileId><![CDATA[1502673012]]></customerProfileId>
+  <paymentProfile>
+    <customerType><![CDATA[individual]]></customerType>
+    <billTo>
+      <firstName><![CDATA[Ali]]></firstName>
+      <lastName><![CDATA[Raza]]></lastName>
+      <address><![CDATA[Houston]]></address>
+      <city><![CDATA[Houston]]></city>
+      <state><![CDATA[Texas]]></state>
+      <zip><![CDATA[12345]]></zip>
+      <country><![CDATA[USA]]></country>
+      <phoneNumber><![CDATA[1-234-567-89]]></phoneNumber>
+    </billTo>
+    <payment>
+      <creditCard>
+        <cardNumber>xxxx-0002</cardNumber>
+        <expirationDate>xxxx</expirationDate>
+        <cardCode>xxxx</cardCode>
+      </creditCard>
+    </payment>
+    <defaultPaymentProfile>true</defaultPaymentProfile>
+  </paymentProfile>
+  <validationMode><![CDATA[liveMode]]></validationMode>
+</createCustomerPaymentProfileRequest>
+
+ Mon, 30 Oct 2017 18:19:20 +0100 INFO : [_sendRequest] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\util\HttpClient.php : 89) - Sending 'XML' Request type
+ Mon, 30 Oct 2017 18:19:20 +0100 INFO : [_sendRequest] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\util\HttpClient.php : 94) - Sending http request via Curl
+ Mon, 30 Oct 2017 18:19:24 +0100 INFO : [_sendRequest] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\util\HttpClient.php : 96) - Response from AnetApi: ﻿<?xml version="1.0" encoding="utf-8"?><createCustomerPaymentProfileResponse xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="AnetApi/xml/v1/schema/AnetApiSchema.xsd"><messages><resultCode>Ok</resultCode><message><code>I00001</code><text>Successful.</text></message></messages><customerProfileId>1502673012</customerProfileId><customerPaymentProfileId>1502220564</customerPaymentProfileId><validationDirectResponse>1,1,1,This transaction has been approved.,AYZXRI,Y,40008021890,none,Test transaction for ValidateCustomerPaymentProfile.,0.00,CC,auth_only,none,Ali,Raza,,Houston,Houston,Texas,12345,USA,1-234-567-89,,email@example.com,,,,,,,,,0.00,0.00,0.00,FALSE,none,C9FADA1ADA832A00993CB8FEEF8BE0E3,P,2,,,,,,,,,,,XXXX0002,American Express,,,,,,,,,,,,,,,,,</validationDirectResponse></createCustomerPaymentProfileResponse>
+ Mon, 30 Oct 2017 18:19:24 +0100 INFO : [execute] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\api\controller\base\ApiOperationBase.php : 128) - Response De-Serialization Begin
+ Mon, 30 Oct 2017 18:19:24 +0100 INFO : [execute] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\api\controller\base\ApiOperationBase.php : 130) - Response De-Serialization End
+ Mon, 30 Oct 2017 18:19:24 +0100 INFO : [execute] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\api\controller\base\ApiOperationBase.php : 114) - Request Serialization Begin
+ Mon, 30 Oct 2017 18:19:24 +0100 DEBUG : [execute] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\api\controller\base\ApiOperationBase.php : 115) - net\authorize\api\contract\v1\CreateTransactionRequest Object
+(
+    [transactionRequest:net\authorize\api\contract\v1\CreateTransactionRequest:private] => net\authorize\api\contract\v1\TransactionRequestType Object
+        (
+            [transactionType:net\authorize\api\contract\v1\TransactionRequestType:private] => authCaptureTransaction
+            [amount:net\authorize\api\contract\v1\TransactionRequestType:private] => 5.00
+            [currencyCode:net\authorize\api\contract\v1\TransactionRequestType:private] => 
+            [payment:net\authorize\api\contract\v1\TransactionRequestType:private] => 
+            [profile:net\authorize\api\contract\v1\TransactionRequestType:private] => net\authorize\api\contract\v1\CustomerProfilePaymentType Object
+                (
+                    [createProfile:net\authorize\api\contract\v1\CustomerProfilePaymentType:private] => 
+                    [customerProfileId:net\authorize\api\contract\v1\CustomerProfilePaymentType:private] => 1502673012
+                    [paymentProfile:net\authorize\api\contract\v1\CustomerProfilePaymentType:private] => net\authorize\api\contract\v1\PaymentProfileType Object
+                        (
+                            [paymentProfileId:net\authorize\api\contract\v1\PaymentProfileType:private] => 
+                            [cardCode:net\authorize\api\contract\v1\PaymentProfileType:private] => 
+                        )
+
+                    [shippingProfileId:net\authorize\api\contract\v1\CustomerProfilePaymentType:private] => 
+                )
+
+            [solution:net\authorize\api\contract\v1\TransactionRequestType:private] => 
+            [callId:net\authorize\api\contract\v1\TransactionRequestType:private] => 
+            [terminalNumber:net\authorize\api\contract\v1\TransactionRequestType:private] => 
+            [authCode:net\authorize\api\contract\v1\TransactionRequestType:private] => 
+            [refTransId:net\authorize\api\contract\v1\TransactionRequestType:private] => 
+            [splitTenderId:net\authorize\api\contract\v1\TransactionRequestType:private] => 
+            [order:net\authorize\api\contract\v1\TransactionRequestType:private] => 
+            [lineItems:net\authorize\api\contract\v1\TransactionRequestType:private] => 
+            [tax:net\authorize\api\contract\v1\TransactionRequestType:private] => 
+            [duty:net\authorize\api\contract\v1\TransactionRequestType:private] => 
+            [shipping:net\authorize\api\contract\v1\TransactionRequestType:private] => 
+            [taxExempt:net\authorize\api\contract\v1\TransactionRequestType:private] => 
+            [poNumber:net\authorize\api\contract\v1\TransactionRequestType:private] => 
+            [customer:net\authorize\api\contract\v1\TransactionRequestType:private] => 
+            [billTo:net\authorize\api\contract\v1\TransactionRequestType:private] => 
+            [shipTo:net\authorize\api\contract\v1\TransactionRequestType:private] => 
+            [customerIP:net\authorize\api\contract\v1\TransactionRequestType:private] => 
+            [cardholderAuthentication:net\authorize\api\contract\v1\TransactionRequestType:private] => 
+            [retail:net\authorize\api\contract\v1\TransactionRequestType:private] => 
+            [employeeId:net\authorize\api\contract\v1\TransactionRequestType:private] => 
+            [transactionSettings:net\authorize\api\contract\v1\TransactionRequestType:private] => 
+            [userFields:net\authorize\api\contract\v1\TransactionRequestType:private] => 
+        )
+
+    [merchantAuthentication:net\authorize\api\contract\v1\ANetApiRequestType:private] => net\authorize\api\contract\v1\MerchantAuthenticationType Object
+        (
+            [name:net\authorize\api\contract\v1\MerchantAuthenticationType:private] => 66BB6xppD8qM
+            [transactionKey:net\authorize\api\contract\v1\MerchantAuthenticationType:private] => xxxx
+            [sessionToken:net\authorize\api\contract\v1\MerchantAuthenticationType:private] => 
+            [password:net\authorize\api\contract\v1\MerchantAuthenticationType:private] => 
+            [impersonationAuthentication:net\authorize\api\contract\v1\MerchantAuthenticationType:private] => 
+            [fingerPrint:net\authorize\api\contract\v1\MerchantAuthenticationType:private] => 
+            [clientKey:net\authorize\api\contract\v1\MerchantAuthenticationType:private] => 
+            [mobileDeviceId:net\authorize\api\contract\v1\MerchantAuthenticationType:private] => 
+        )
+
+    [clientId:net\authorize\api\contract\v1\ANetApiRequestType:private] => sdk-php-1.9.3
+    [refId:net\authorize\api\contract\v1\ANetApiRequestType:private] => ref1509383964
+)
+
+ Mon, 30 Oct 2017 18:19:24 +0100 INFO : [execute] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\api\controller\base\ApiOperationBase.php : 118) - Request  Serialization End
+ Mon, 30 Oct 2017 18:19:24 +0100 INFO : [_sendRequest] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\util\HttpClient.php : 75) -  Url: https://apitest.authorize.net/xml/v1/request.api
+ Mon, 30 Oct 2017 18:19:24 +0100 INFO : [_sendRequest] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\util\HttpClient.php : 77) - Request to AnetApi: 
+<?xml version="1.0" encoding="UTF-8"?>
+<createTransactionRequest xmlns="AnetApi/xml/v1/schema/AnetApiSchema.xsd">
+  <merchantAuthentication>
+    <name><![CDATA[66BB6xppD8qM]]></name>
+    <transactionKey>xxxx</transactionKey>
+  </merchantAuthentication>
+  <clientId><![CDATA[sdk-php-1.9.3]]></clientId>
+  <refId><![CDATA[ref1509383964]]></refId>
+  <transactionRequest>
+    <transactionType><![CDATA[authCaptureTransaction]]></transactionType>
+    <amount>5.00</amount>
+    <profile>
+      <customerProfileId><![CDATA[1502673012]]></customerProfileId>
+      <paymentProfile/>
+    </profile>
+  </transactionRequest>
+</createTransactionRequest>
+
+ Mon, 30 Oct 2017 18:19:24 +0100 INFO : [_sendRequest] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\util\HttpClient.php : 89) - Sending 'XML' Request type
+ Mon, 30 Oct 2017 18:19:24 +0100 INFO : [_sendRequest] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\util\HttpClient.php : 94) - Sending http request via Curl
+ Mon, 30 Oct 2017 18:19:26 +0100 INFO : [_sendRequest] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\util\HttpClient.php : 96) - Response from AnetApi: ﻿<?xml version="1.0" encoding="utf-8"?><ErrorResponse xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="AnetApi/xml/v1/schema/AnetApiSchema.xsd"><messages><resultCode>Error</resultCode><message><code>E00003</code><text>The element 'paymentProfile' in namespace 'AnetApi/xml/v1/schema/AnetApiSchema.xsd' has incomplete content. List of possible elements expected: 'paymentProfileId' in namespace 'AnetApi/xml/v1/schema/AnetApiSchema.xsd'.</text></message></messages></ErrorResponse>
+ Mon, 30 Oct 2017 18:19:26 +0100 INFO : [execute] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\api\controller\base\ApiOperationBase.php : 128) - Response De-Serialization Begin
+ Mon, 30 Oct 2017 18:19:26 +0100 INFO : [execute] (C:\xampp\htdocs\donation\application\libraries\authorize\vendor\authorizenet\authorizenet\lib\net\authorize\api\controller\base\ApiOperationBase.php : 130) - Response De-Serialization End

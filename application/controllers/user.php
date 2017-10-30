@@ -62,7 +62,7 @@ class User extends CI_Controller {
 				$this->session->set_userdata('update_profile', 'update');
 				exit;
 			}
-			
+			$this->session->unset_userdata('recurring_frequency');
 			if($this->input->post('amount')) {
 				$this->session->set_userdata('amount', $this->input->post('amount'));
 				if($this->input->post('recurring_frequency')) {

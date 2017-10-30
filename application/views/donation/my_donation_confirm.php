@@ -202,7 +202,7 @@ function add_new_card() {
 	$('#new_card').show();
 	$('#existing_card').remove();
 }
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() { console.log('e');
 	show_card_logo();
 	$('select[name=payment_profile]').change(function(){
 		show_card_logo();
@@ -210,13 +210,13 @@ document.addEventListener('DOMContentLoaded', function() {
 }, false);
 function show_card_logo(){
 		var ctype = $('select[name=payment_profile] option:selected').data('type');
-		if(ctype == 'VISA') {
+		if(ctype == 'Visa') {
 			$('#card_logo').html('<img alt="Visa_color_icon" class="which-cards" id="visa" src="<?php echo base_url(); ?>assets/visa_color_icon-985bccb19cc954fba005b7374a1ba081.png" title="Visa">');
-		}else if(ctype == 'MASTERCARD'){
+		}else if(ctype == 'Mastercard'){
 			$('#card_logo').html('<img alt="Master_card_color_icon" class="which-cards" id="mastercard" src="<?php echo base_url(); ?>assets/master_card_color_icon-8e4b8cb184a416c8e7740c133374920e.png" title="Master Card">');
-		}else if(ctype == 'AMEX'){
+		}else if(ctype == 'Amex'){
 			$('#card_logo').html('<img alt="American_express_color_icon" class="which-cards" id="amex" src="<?php echo base_url(); ?>assets/american_express_color_icon-f26f48991a9fa06e010b06a971bad00d.png" title="American Express">');
-		}else if(ctype == 'DISCOVER'){
+		}else if(ctype == 'Discover'){
 			$('#card_logo').html('<img alt="Discover_color_icon" class="which-cards" id="discover" src="<?php echo base_url(); ?>assets/discover_color_icon-e2c1bc436f2842f18964f0e9f84c7020.png" title="Discover">');
 		}else{
 		}

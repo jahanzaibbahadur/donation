@@ -2,7 +2,7 @@
 .form-control[readonly] {
 	background-color: #fff;
 }
-#settings-form input[type=text] {
+#settings-form input[type=text], #settings-form select  {
 	width: 550px !important;
 }
 textarea {
@@ -34,7 +34,7 @@ textarea {
 <div class="row">
 	<div class="col-md-12">
 		<div class="card-box table-responsive">
-			<h4 class="m-t-0 header-title"><b>User</b></h4>
+			<h4 class="m-t-0 header-title"><b>Settings</b></h4>
 			<p class="text-muted font-14 m-b-30"></p>
 			<div class="row">
 				<div class="col-md-12">
@@ -47,6 +47,7 @@ textarea {
 							<tr><th>SMS Password</th><td><input type="text" class="form-control input-sm" name="SMS_password" value="<?php echo $settings->SMS_password; ?>" readonly></td></tr>
 							<tr><th>Authorize.Net Login ID</th><td><input type="text" class="form-control input-sm" name="MERCHANT_LOGIN_ID" value="<?php echo $settings->MERCHANT_LOGIN_ID; ?>" readonly></td></tr>
 							<tr><th>Authorize.Net Transaction Key</th><td><input type="text" class="form-control input-sm" name="MERCHANT_TRANSACTION_KEY" value="<?php echo $settings->MERCHANT_TRANSACTION_KEY; ?>" readonly></td></tr>
+							<tr><th>Transaction Mode</th><td><select class="form-control" name="is_sandbox" disabled><option <?php if($settings->is_sandbox==1){?> selected="true"<?php }?> value="1" >Production</option><option <?php if($settings->is_sandbox==0){?> selected="true"<?php }?> value="0">SandBox</option></select></td></tr>
 							<tr><th>Company Name</th><td><input type="text" class="form-control input-sm" name="comp_name" value="<?php echo $settings->comp_name; ?>" readonly></td></tr>
 							<tr><th>Company Address</th><td><textarea class="form-control input-sm" name="comp_address" readonly><?php echo $settings->comp_address; ?></textarea></td></tr>
 							<tr><th>Company Phone</th><td><input type="text" class="form-control input-sm" name="comp_phone" value="<?php echo $settings->comp_phone; ?>" readonly></td></tr>
@@ -67,6 +68,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			$(this).text('Save');
 			$(this).removeClass('btn-primary').addClass('btn-success');
 			$('#settings-form').find('input:not(:first), textarea').attr('readonly', false);
+			$('#settings-form').find('select').attr('disabled', false);
 		}else{
 			$(this).text('Edit');
 			$(this).removeClass('btn-success').addClass('btn-primary');
@@ -78,6 +80,7 @@ document.addEventListener('DOMContentLoaded', function() {
 					notify('Update', 'Data Updated Successfully', 'success');
 				}
 				$('#settings-form').find('input:not(:first), textarea').attr('readonly', true);
+				$('#settings-form').find('select').attr('disabled', true);
 			}, 'json');
 		}
 		
