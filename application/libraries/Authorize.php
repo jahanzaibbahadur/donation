@@ -39,7 +39,7 @@ class Authorize {
 		$request->setProfile($customerProfile);
 		// Create the controller and get the response
 		$controller = new AnetController\CreateCustomerProfileController($request);
-		if($this->$settings->is_sandbox==0){
+		if($this->settings->is_sandbox){
 			$response = $controller->executeWithApiResponse(\net\authorize\api\constants\ANetEnvironment::SANDBOX);
 		}else{
 			$response = $controller->executeWithApiResponse(\net\authorize\api\constants\ANetEnvironment::PRODUCTION);
@@ -60,7 +60,7 @@ class Authorize {
 	}
 	
 	function updateCustomerPaymentProfile($user,$profile) {
-		$customerProfileId=$user['profileid'];
+		$customerProfileId = $user->profileid;
 		/* Create a merchantAuthenticationType object with authentication details
 		retrieved from the constants file */
 
@@ -115,7 +115,7 @@ class Authorize {
 		$request->setPaymentProfile( $paymentprofile );
 
 		$controller = new AnetController\UpdateCustomerPaymentProfileController($request);
-		if($this->$settings->is_sandbox==0){
+		if($this->settings->is_sandbox){
 			$response = $controller->executeWithApiResponse(\net\authorize\api\constants\ANetEnvironment::SANDBOX);
 		}else{
 			$response = $controller->executeWithApiResponse(\net\authorize\api\constants\ANetEnvironment::PRODUCTION);
@@ -203,7 +203,7 @@ class Authorize {
 
 		// Create the controller and get the response
 		$controller = new AnetController\CreateCustomerPaymentProfileController($paymentprofilerequest);
-		if($this->$settings->is_sandbox==0){
+		if($this->settings->is_sandbox){
 			$response = $controller->executeWithApiResponse(\net\authorize\api\constants\ANetEnvironment::SANDBOX);
 		}else{
 			$response = $controller->executeWithApiResponse(\net\authorize\api\constants\ANetEnvironment::PRODUCTION);
@@ -258,7 +258,7 @@ class Authorize {
 		$request->setRefId( $refId);
 		$request->setTransactionRequest( $transactionRequestType);
 		$controller = new AnetController\CreateTransactionController($request);
-		if($this->$settings->is_sandbox==0){
+		if($this->settings->is_sandbox){
 			$response = $controller->executeWithApiResponse(\net\authorize\api\constants\ANetEnvironment::SANDBOX);
 		}else{
 			$response = $controller->executeWithApiResponse(\net\authorize\api\constants\ANetEnvironment::PRODUCTION);
@@ -353,7 +353,7 @@ class Authorize {
 		$request->setSubscription($subscription);
 		$controller = new AnetController\ARBCreateSubscriptionController($request);
 
-		if($this->$settings->is_sandbox==0){
+		if($this->settings->is_sandbox){
 			$response = $controller->executeWithApiResponse(\net\authorize\api\constants\ANetEnvironment::SANDBOX);
 		}else{
 			$response = $controller->executeWithApiResponse(\net\authorize\api\constants\ANetEnvironment::PRODUCTION);

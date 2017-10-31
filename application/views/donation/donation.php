@@ -296,6 +296,7 @@ var Donation = function() {
 
             submitHandler: function(form) {
                 //form[0].submit();
+				$('.form-submit-button').attr('disabled', 'true');
 				var data = $(form).serialize();
 				data = data + '&action=profile';
 				console.log(data);
@@ -398,6 +399,7 @@ var Donation = function() {
 
             submitHandler: function(form) {
                 //form[0].submit();
+				$('.form-submit-button').attr('disabled', 'true');
 				var data = $(form).serialize();
 				data = data + '&action=profile';
 				console.log(data);

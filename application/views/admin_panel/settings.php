@@ -1,6 +1,6 @@
 <style>
-.form-control[readonly] {
-	background-color: #fff;
+.form-control[readonly], .form-control[disabled] {
+	background-color: #fff !important;
 }
 #settings-form input[type=text], #settings-form select  {
 	width: 550px !important;
@@ -47,7 +47,7 @@ textarea {
 							<tr><th>SMS Password</th><td><input type="text" class="form-control input-sm" name="SMS_password" value="<?php echo $settings->SMS_password; ?>" readonly></td></tr>
 							<tr><th>Authorize.Net Login ID</th><td><input type="text" class="form-control input-sm" name="MERCHANT_LOGIN_ID" value="<?php echo $settings->MERCHANT_LOGIN_ID; ?>" readonly></td></tr>
 							<tr><th>Authorize.Net Transaction Key</th><td><input type="text" class="form-control input-sm" name="MERCHANT_TRANSACTION_KEY" value="<?php echo $settings->MERCHANT_TRANSACTION_KEY; ?>" readonly></td></tr>
-							<tr><th>Transaction Mode</th><td><select class="form-control" name="is_sandbox" disabled><option <?php if($settings->is_sandbox==1){?> selected="true"<?php }?> value="1" >Production</option><option <?php if($settings->is_sandbox==0){?> selected="true"<?php }?> value="0">SandBox</option></select></td></tr>
+							<tr><th>Transaction Mode</th><td><select class="form-control input-sm" name="is_sandbox" disabled><option <?php if($settings->is_sandbox== 0) echo 'selected'; ?> value="0" >Production</option><option <?php if($settings->is_sandbox==1) echo 'selected'; ?> value="1">SandBox</option></select></td></tr>
 							<tr><th>Company Name</th><td><input type="text" class="form-control input-sm" name="comp_name" value="<?php echo $settings->comp_name; ?>" readonly></td></tr>
 							<tr><th>Company Address</th><td><textarea class="form-control input-sm" name="comp_address" readonly><?php echo $settings->comp_address; ?></textarea></td></tr>
 							<tr><th>Company Phone</th><td><input type="text" class="form-control input-sm" name="comp_phone" value="<?php echo $settings->comp_phone; ?>" readonly></td></tr>

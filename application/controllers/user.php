@@ -123,8 +123,10 @@ class User extends CI_Controller {
 					
 					$authorize = new Authorize();
 					
-					if($payment_profiles_count > 0){
-						$payment_profiles = $this->user_model->get_payment_profiles();
+					$payment_profiles = $this->user_model->get_payment_profiles();
+					
+					if(count($payment_profiles) > 0){
+						
 						foreach($payment_profiles as $profile) {
 							$authorize->updateCustomerPaymentProfile($user, $profile);
 						}
