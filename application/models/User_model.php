@@ -151,7 +151,7 @@ curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 		$data = array(
 				   'profileid' => $profileid 
 				);
-		$this->db->where('id', $this->session->userdata('id'));
+		$this->db->where('id', $this->user_id);
 		$this->db->update('users', $data);
 	}
 	
