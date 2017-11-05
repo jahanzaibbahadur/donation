@@ -65,4 +65,65 @@ class Adminb extends CI_Controller {
 		$data['content'] = 'admin_panel/settings';
 		$this->load->view('admin_panel/main_layout', $data);
 	}
+	
+	public function profile() {
+		
+		if($this->input->method() == 'post') {
+			
+			$config = array(
+							array(
+									'field'=>'current_password',
+									'label'=>'Current Password',
+									'rules'=>'required|callback_password_check'
+							),
+							array(
+									'field'=>'new_password',
+									'label'=>'New Password',
+									'rules'=>'required'
+							),
+							array(
+									'field'=>'confirm_password',
+									'label'=>'Confirm Password',
+									'rules'=>'required|matches[new_password]'
+							)
+                );
+
+			$this->form_validation->set_rules($config);
+			$this->form_validation->set_error_delimiters('<li>', '</li>');
+			
+			if($this->form_validation->run()==true){
+				$this->admin_model->update_password();
+				message_type('success');
+				message_title('Success!');
+				message('Password Updated Successfully');
+			} else {
+				message_type('danger');
+				message_title('Failed!');
+				message(validation_errors());
+			}
+			//redirect('admin/profile');
+		}
+		
+		$data['menu'] = 'profile';
+		$data['content'] = 'admin_panel/profile';
+		$this->load->view('admin_panel/main_layout', $data);
+	}
+	
+	public function password_check($password)
+	{
+		if ($hash = $this->admin_model->get_password_hash())
+		{	
+			if(verify_password($password, $hash)){
+				return true;
+			}else{
+				$this->form_validation->set_message('password_check', 'The {field} is invalid.');
+				return false;
+			}
+		}
+		else
+		{
+			$this->form_validation->set_message('password_check', 'The Username doesnot exist.');
+			return false;
+		}
+	}
 }

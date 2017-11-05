@@ -75,6 +75,14 @@ class Admin_model extends CI_Model{
 		}
 	}
 	
+	function update_password() {
+		$new_password = $this->input->post('new_password');
+		$this->db->set('password', hash_password($new_password));
+		$this->db->where('id', $this->session->userdata('admin')['id']);
+		$this->db->update('admins');
+		return true;
+	}
+	
 	function forgot_password_update($hash, $password){
 		$this->db->where('hash', $hash);
 		$query = $this->db->get('activation');
@@ -156,7 +164,7 @@ class Admin_model extends CI_Model{
      * Function to check if user already exists
      */
     function get_password_hash(){
-        $this->db->where('id',$this->session->userdata('id'));
+        $this->db->where('id',$this->session->userdata('admin')['id']);
         $query = $this->db->get('admins');
         if($query->num_rows() > 0){
 			return $query->row('password');
@@ -289,24 +297,6 @@ class Admin_model extends CI_Model{
             return false;
         }
     }
-    
-    
-        /**
-     * Function to change the current password
-     */
-    function update_password(){
-      $old_pass = md5(crypt($this->input->post('old_password'),  $this->salt));
-        
-      $data = array(
-          'password' => md5(crypt($this->input->post('new_password'),  $this->salt)) 
-        );
-
-      $this->db->where('password', $old_pass);
-      $this->db->update('user_login', $data);
-      
-      return true;  
-    }
-    
     
     
     /**

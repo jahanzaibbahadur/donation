@@ -196,7 +196,7 @@
                                 </a>
 
                                 <ul class="dropdown-menu dropdown-menu-right arrow-dropdown-menu arrow-menu-right user-list notify-list">
-                                    <li><a href="javascript:void(0)">Profile</a></li>
+                                    <li><a href="<?php echo base_url(); ?>admin/profile">Profile</a></li>
                                     <li class="divider"></li>
                                     <li><a href="<?php echo base_url(); ?>admin/logout">Logout</a></li>
                                 </ul>
