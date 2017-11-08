@@ -22,55 +22,39 @@
 <div class="row">
 
 	<div class="col-lg-3 col-md-6">
-		<a href="javascript:;">
-			<div class="card-box widget-box-two widget-two-custom">
-				<i class="mdi mdi-currency-usd widget-two-icon"></i>
-				<div class="wigdet-two-content">
-					<p class="m-0 text-uppercase font-bold font-secondary text-overflow" title="Statistics">Users</p>
-					<h2 class=""><span><i class="mdi mdi-arrow-up"></i></span> <span data-plugin="counterup"><?php echo count($users); ?></span></h2>
-					<p class="m-0">Jan - Apr 2017</p>
-				</div>
+		<div class="card-box">
+			<div class="wigdet-two-content">
+				<h4 class="m-t-0 font-16 m-b-5 text-overflow" title="Users">Registered Users</h4>
+				<h3 class="m-b-0 m-t-20"><span data-plugin="counterup"><?php echo count($users); ?></span></h3>
 			</div>
-		</a>
-	</div><!-- end col -->
-
-	<div class="col-lg-3 col-md-6">
-		<a href="javascript:;">
-			<div class="card-box widget-box-two widget-two-custom">
-				<i class="mdi mdi-account-multiple widget-two-icon"></i>
-				<div class="wigdet-two-content">
-					<p class="m-0 text-uppercase font-bold font-secondary text-overflow" title="Statistics">Donation</p>
-					<h2 class=""><span><i class="mdi mdi-arrow-up"></i></span> <span data-plugin="counterup"><?php echo '1000'; ?></span>$</h2>
-					<p class="m-0">Jan - Apr 2017</p>
-				</div>
-			</div>
-		</a>
-	</div><!-- end col -->
-
-	<div class="col-lg-3 col-md-6">
-		<a href="javascript:;">
-			<div class="card-box widget-box-two widget-two-custom">
-				<i class="mdi mdi-crown widget-two-icon"></i>
-				<div class="wigdet-two-content">
-					<p class="m-0 text-uppercase font-bold font-secondary text-overflow" title="Statistics">Payment Profiles</p>
-					<h2 class=""><span><i class="mdi mdi-arrow-up"></i></span> <span data-plugin="counterup"><?php echo count($payment_profiles); ?></span></h2>
-					<p class="m-0">Jan - Apr 2017</p>
-				</div>
-			</div>
-		</a>
+		</div>
 	</div><!-- end col -->
 	
 	<div class="col-lg-3 col-md-6">
-		<a href="javascript:;">
-			<div class="card-box widget-box-two widget-two-custom">
-				<i class="mdi mdi-crown widget-two-icon"></i>
-				<div class="wigdet-two-content">
-					<p class="m-0 text-uppercase font-bold font-secondary text-overflow" title="Statistics">Receipts</p>
-					<h2 class=""><span><i class="mdi mdi-arrow-up"></i></span> <span data-plugin="counterup"><?php echo count($receipts); ?></span></h2>
-					<p class="m-0">Jan - Apr 2017</p>
-				</div>
+		<div class="card-box">
+			<div class="wigdet-two-content">
+				<h4 class="m-t-0 font-16 m-b-5 text-overflow" title="Donation">This Month Donation</h4>
+				<h3 class="m-b-0 m-t-20"><span>$</span> <span data-plugin="counterup"><?php echo $current_month_donation; ?></span></h3>
 			</div>
-		</a>
+		</div>
+	</div><!-- end col -->
+	
+	<div class="col-lg-3 col-md-6">
+		<div class="card-box">
+			<div class="wigdet-two-content">
+				<h4 class="m-t-0 font-16 m-b-5 text-overflow" title="Donation">Monthly Recurring Donation</h4>
+				<h3 class="m-b-0 m-t-20"><span>$</span> <span data-plugin="counterup"><?php echo $monthly_recurring_donation; ?></span></h3>
+			</div>
+		</div>
+	</div><!-- end col -->
+	
+	<div class="col-lg-3 col-md-6">
+		<div class="card-box">
+			<div class="wigdet-two-content">
+				<h4 class="m-t-0 font-16 m-b-5 text-overflow" title="Receipts">Receipts</h4>
+				<h3 class="m-b-0 m-t-20"><span data-plugin="counterup"><?php echo count($receipts); ?></span></h3>
+			</div>
+		</div>
 	</div><!-- end col -->
 
 </div>

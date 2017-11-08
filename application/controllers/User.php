@@ -298,7 +298,8 @@ class User extends CI_Controller {
 									'user_id' => $this->session->userdata('user')['id'],
 									'payment_id' => $payment_id,
 									'txid' => $response['trans_id'],
-									'amount' => $this->session->userdata('amount')
+									'amount' => $this->session->userdata('amount'),
+									'recurring' => $intervalLength
 								);
 			
 				$receipt_id = $this->user_model->insert_receipt($receipt_data);

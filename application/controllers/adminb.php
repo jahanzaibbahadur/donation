@@ -19,6 +19,8 @@ class Adminb extends CI_Controller {
 	public function dashboard()
 	{ 	
 		$data['users'] = $this->user_model->get_users();
+		$data['current_month_donation'] = $this->user_model->get_current_month_donation();
+		$data['monthly_recurring_donation'] = $this->user_model->get_current_month_recurring();
 		$data['receipts'] = $this->donation_model->get_receipts();
 		$data['payment_profiles'] = $this->donation_model->get_payment_profiles();
 		$data['last_20_receipts'] = $this->donation_model->last_20_receipts();

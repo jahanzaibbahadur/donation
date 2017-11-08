@@ -15,6 +15,26 @@ class user_model extends CI_Model {
 		return $query->result();
 	}
 	
+	function get_current_month_donation() {
+		$this->db->where('MONTH(donated_at)', 'MONTH(CURDATE())', false);
+		$this->db->where('YEAR(donated_at)', 'YEAR(CURDATE())', false);
+		//$this->db->where('recurring', '0');
+		$this->db->select_sum('amount');
+		$query = $this->db->get('receipts');
+		//echo $this->db->last_query(); exit;
+		return $query->row('amount');
+	}
+	
+	function get_current_month_recurring() {
+		$this->db->where('MONTH(donated_at)', 'MONTH(CURDATE())', false);
+		$this->db->where('YEAR(donated_at)', 'YEAR(CURDATE())', false);
+		$this->db->where('recurring !=', '0');
+		$this->db->select_sum('amount');
+		$query = $this->db->get('receipts');
+		//echo $this->db->last_query(); exit;
+		return $query->row('amount');
+	}
+	
 	function create_user()
 	{
 		$user_info = array(
