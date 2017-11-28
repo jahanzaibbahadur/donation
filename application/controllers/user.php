@@ -276,6 +276,7 @@ class User extends CI_Controller {
 				$response = $authorize->createCustomerPaymentProfile($user,$card_details);
 				
 				$payment_id = $response['payment_id'];
+				$payment_details['payment_id'] = $payment_id;
 				
 				if($response['status'] == 'success') {
 					$card_type = get_card_type($card_number);

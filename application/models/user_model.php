@@ -15,6 +15,12 @@ class user_model extends CI_Model {
 		return $query->result();
 	}
 	
+	function get_numbers() {
+		$this->db->select('phone_num');
+		$query = $this->db->get('users');
+		return $query->result();
+	}
+	
 	function get_current_month_donation() {
 		$this->db->where('MONTH(donated_at)', 'MONTH(CURDATE())', false);
 		$this->db->where('YEAR(donated_at)', 'YEAR(CURDATE())', false);

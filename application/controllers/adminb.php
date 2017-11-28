@@ -44,6 +44,64 @@ class Adminb extends CI_Controller {
 		$this->load->view('admin_panel/main_layout', $data);
 	}
 	
+	public function message() {
+		$data['menu'] = 'mass_message';
+		$data['content'] = 'admin_panel/mass_message';
+		$this->load->view('admin_panel/main_layout', $data);
+	}
+	
+	public function send_bulk_messages()
+	{ 
+		if (!$this->input->is_ajax_request()) {
+		   exit('No direct script access allowed');
+		}
+		
+		if($this->input->post()) {
+			
+			$message = $this->input->post('message');
+			
+			$numbers = $this->user_model->get_numbers();
+			
+			$setting= get_setting();
+			
+			foreach($numbers as $number) {
+				
+				$to_number = str_replace('-', '', $number->phone_num);
+			
+				$data = array(
+							"from" => $setting->sender_number,
+							"to" => $to_number,
+							"text" => $message
+						);
+				$data_string = json_encode($data);     
+
+				$url = $setting->SMS_url;
+				$ch = curl_init();
+				curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+				curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+				curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+				curl_setopt($ch, CURLOPT_URL, $url);
+				curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+				curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+				curl_setopt($ch, CURLOPT_USERPWD, $setting->SMS_user.':'.$setting->SMS_password);
+				curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+					'Content-Type: application/json',
+					'Content-Length: ' . strlen($data_string))
+				);
+				
+				$response = curl_exec($ch);
+				//echo $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+				//$response = json_decode($response);
+				curl_close($ch);
+				sleep(1);
+			}
+			
+			echo json_encode(array('status' => 'success', 'message' => 'Messages sent successfully'));
+			die();
+		}
+	}
+	
 	public function donation_receipts() {
 		$data['receipts'] = $this->donation_model->get_receipts();
 		$data['menu'] = 'donation_receipts';

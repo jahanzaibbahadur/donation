@@ -67,6 +67,9 @@ $route['admin/payment/profiles'] = 'adminb/payment_profiles';
 $route['admin/donation/receipts'] = 'adminb/donation_receipts';
 $route['admin/settings'] = 'adminb/settings';
 $route['admin/profile'] = 'adminb/profile';
+$route['admin/message'] = 'adminb/message';
+$route['admin/message/send'] = 'adminb/send_bulk_messages';
+
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

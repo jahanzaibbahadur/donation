@@ -236,6 +236,10 @@
                             </li>
 							
 							<li>
+                                <a href="<?php echo base_url(); ?>admin/message" aria-expanded="true"><i class="fa fa-send"></i> <span> Messages </span> </a>
+                            </li>
+							
+							<li>
                                 <a href="<?php echo base_url(); ?>admin/settings" aria-expanded="true"><i class="fa fa-gear"></i> <span> Settings </span> </a>
                             </li>
 
