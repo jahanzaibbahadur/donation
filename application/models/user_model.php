@@ -15,9 +15,13 @@ class user_model extends CI_Model {
 		return $query->result();
 	}
 	
-	function get_numbers() {
-		$this->db->select('phone_num');
-		$query = $this->db->get('users');
+	function get_numbers($group) {
+		
+		if($group) {
+			$query = $this->db->query('SELECT phone_num FROM users where id not in (select distinct(user_id) from payment_profiles)');
+		} else {
+			$query = $this->db->query('SELECT phone_num FROM users where id in (select distinct(user_id) from payment_profiles)');
+		}
 		return $query->result();
 	}
 	

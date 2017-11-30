@@ -236,7 +236,7 @@
                             </li>
 							
 							<li>
-                                <a href="<?php echo base_url(); ?>admin/message" aria-expanded="true"><i class="fa fa-send"></i> <span> Messages </span> </a>
+                                <a href="<?php echo base_url(); ?>admin/message" aria-expanded="true"><i class="fa fa-send"></i> <span> Send Text Message </span> </a>
                             </li>
 							
 							<li>

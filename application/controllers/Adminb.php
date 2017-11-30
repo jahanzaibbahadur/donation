@@ -56,26 +56,27 @@ class Adminb extends CI_Controller {
 		   exit('No direct script access allowed');
 		}
 		
-		if($this->input->post()) {
+		if($this->input->method() == 'post') {
 			
+			$group = $this->input->post('group');
 			$message = $this->input->post('message');
 			
-			$numbers = $this->user_model->get_numbers();
+			$numbers = $this->user_model->get_numbers($group);
 			
-			$setting= get_setting();
+			$settings = get_settings();
 			
 			foreach($numbers as $number) {
 				
-				$to_number = str_replace('-', '', $number->phone_num);
+				//$to_number = str_replace('-', '', $number->phone_num);
 			
 				$data = array(
-							"from" => $setting->sender_number,
-							"to" => $to_number,
+							"from" => $settings->sender_number,
+							"to" => $number->phone_num,
 							"text" => $message
 						);
 				$data_string = json_encode($data);     
-
-				$url = $setting->SMS_url;
+				
+				$url = $settings->SMS_url;
 				$ch = curl_init();
 				curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 				curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
@@ -84,15 +85,15 @@ class Adminb extends CI_Controller {
 				curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
 				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 				curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-				curl_setopt($ch, CURLOPT_USERPWD, $setting->SMS_user.':'.$setting->SMS_password);
+				curl_setopt($ch, CURLOPT_USERPWD, $settings->SMS_user.':'.$settings->SMS_password);
 				curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-					'Content-Type: application/json',
-					'Content-Length: ' . strlen($data_string))
-				);
+					'Accept: application/json','Content-Type: application/json'
+				));
 				
 				$response = curl_exec($ch);
 				//echo $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-				//$response = json_decode($response);
+				//$response = json_decode($response); 
+				
 				curl_close($ch);
 				sleep(1);
 			}

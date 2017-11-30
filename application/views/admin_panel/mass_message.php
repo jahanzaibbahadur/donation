@@ -37,16 +37,26 @@ textarea {
 <div class="row">
 	<div class="col-md-12">
 		<div class="card-box table-responsive">
-			<h4 class="m-t-0 header-title"><b>Mass Message</b></h4>
+			<h4 class="m-t-0 header-title"><b>SEND MASS TEXT MESSAGE</b></h4>
 			<p class="text-muted font-14 m-b-30"></p>
 			<div class="row">
 				<div class="col-md-12">
 					<div class="better-voice-form">
 						<form method="post" class="form-horizontal">
 							<div class="form-group">
+								<label for="origin" class="col-sm-2 control-label">Origin</label>
+								<div class="col-sm-6">
+									<select name="group" class="form-control" required>
+										<option selected disabled="disabled" value="">Select Group</option>
+										<option value="0">Donated</option>
+										<option value="1">Not Donated</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
 								<label for="origin" class="col-sm-2 control-label">Message</label>
 								<div class="col-sm-6">
-									<textarea required class="form-control" rows="5"></textarea>
+									<textarea name="message" required class="form-control" rows="5"></textarea>
 								</div>
 							</div>
 							<div class="form-group">
